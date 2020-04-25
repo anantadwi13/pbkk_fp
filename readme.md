@@ -1,6 +1,6 @@
 # Phalcon Multi Module MVC Boilerplate
 
-From github.com/anantadwi13/phalcon_boilerplate
+From [this](https://github.com/anantadwi13/phalcon_boilerplate)
 
 ## Installation
 
