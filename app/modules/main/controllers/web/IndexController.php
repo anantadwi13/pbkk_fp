@@ -2,9 +2,9 @@
 
 namespace Dengarin\Main\Controllers\Web;
 
-use Dengarin\Main\Controllers\BaseController;
+use Dengarin\Main\Controllers\ModuleController;
 
-class IndexController extends BaseController
+class IndexController extends ModuleController
 {
     public function indexAction()
     {

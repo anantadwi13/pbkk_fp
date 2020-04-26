@@ -2,10 +2,10 @@
 
 namespace Dengarin\Main\Controllers\Api;
 
-use Dengarin\Main\Controllers\BaseController;
+use Dengarin\Main\Controllers\ModuleController;
 use Dengarin\Main\Models\User;
 
-class IndexController extends BaseController
+class IndexController extends ModuleController
 {
     public function initialize(){
         $this->view->disable();

@@ -3,9 +3,7 @@ declare(strict_types=1);
 
 namespace App\Common\Controllers;
 
-use Phalcon\Mvc\Controller;
-
-class ErrorController extends Controller
+class ErrorController extends AppController
 {
     public function initialize()
     {
