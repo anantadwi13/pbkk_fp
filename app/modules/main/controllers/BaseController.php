@@ -3,9 +3,11 @@ declare(strict_types=1);
 
 namespace Dengarin\Main\Controllers;
 
-use Phalcon\Mvc\Controller;
+use App\Common\Controllers\CommonController;
 
-class BaseController extends Controller
+class BaseController extends CommonController
 {
-
+    public function initialize(){
+        parent::initialize();
+    }
 }
