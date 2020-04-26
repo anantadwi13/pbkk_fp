@@ -6,6 +6,7 @@ use Phalcon\Di;
 use Phalcon\Escaper;
 use Phalcon\Events\Event;
 use Phalcon\Flash\Direct as Flash;
+use Phalcon\Flash\Session as FlashSession;
 use Phalcon\Mvc\Dispatcher;
 use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
 use Phalcon\Mvc\View;
@@ -79,6 +80,7 @@ $container->setShared('view', function () {
     $view->setLayoutsDir($config->application->commonResourceDir . '/layouts/');
     $view->setPartialsDir($config->application->commonResourceDir . '/partials/');
     $view->setLayout('main');
+    $view->setTemplateAfter('template');
     $view->disableLevel(View::LEVEL_MAIN_LAYOUT);
 
     $view->registerEngines([
@@ -122,6 +124,20 @@ $container->setShared('modelsMetadata', function () {
 });
 
 /**
+ * Start the session the first time some component request the session service
+ */
+$container->setShared('session', function () {
+    $session = new SessionManager();
+    $files = new SessionAdapter([
+        'savePath' => sys_get_temp_dir(),
+    ]);
+    $session->setAdapter($files);
+    $session->start();
+
+    return $session;
+});
+
+/**
  * Register the session flash service with the Twitter Bootstrap classes
  */
 $container->set('flash', function () {
@@ -139,17 +155,19 @@ $container->set('flash', function () {
 });
 
 /**
- * Start the session the first time some component request the session service
+ * Register the session flash service with the Twitter Bootstrap classes
  */
-$container->setShared('session', function () {
-    $session = new SessionManager();
-    $files = new SessionAdapter([
-        'savePath' => sys_get_temp_dir(),
+$container->set('flashSession', function () {
+    $escaper = new Escaper();
+    $flash = new FlashSession($escaper, $this->get('session'));
+    $flash->setCssClasses([
+        'error' => 'alert alert-danger',
+        'success' => 'alert alert-success',
+        'notice' => 'alert alert-info',
+        'warning' => 'alert alert-warning'
     ]);
-    $session->setAdapter($files);
-    $session->start();
 
-    return $session;
+    return $flash;
 });
 
 $container->setShared('dispatcher', function () {
