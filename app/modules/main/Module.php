@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace ProjectName\Example;
+namespace Dengarin\Main;
 
 use Phalcon\Di\DiInterface;
 use Phalcon\Loader;
