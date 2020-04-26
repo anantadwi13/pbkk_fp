@@ -9,7 +9,7 @@ class ErrorController extends Controller
 {
     public function initialize()
     {
-//        $this->view->setLayout('main');
+        $this->view->setLayout('error');
     }
 
     public function notFoundAction()
