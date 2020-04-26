@@ -1,13 +1,13 @@
 <?php
 
 return [
-    'example' => [
-        'className' => 'ProjectName\Example\Module',
-        'path' => APP_PATH . '/modules/example/Module.php',
+    'main' => [
+        'className' => 'Dengarin\Main\Module',
+        'path' => APP_PATH . '/modules/main/Module.php',
         'namespace' => [
-            'base' => 'ProjectName\Example',
-            'webController' => 'ProjectName\Example\Controllers\Web',
-            'apiController' => 'ProjectName\Example\Controllers\Api'
+            'base' => 'Dengarin\Main',
+            'webController' => 'Dengarin\Main\Controllers\Web',
+            'apiController' => 'Dengarin\Main\Controllers\Api'
         ],
         'routing' => [
             'useDefault' => true,
