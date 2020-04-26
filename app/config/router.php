@@ -147,26 +147,17 @@ foreach ($this->modules as $moduleName => $module) {
             'action' => 2,
             'params' => 3
         ));
-    } else {
-        $customRouting = APP_PATH . '/modules/' . $moduleName . '/config/router.php';
+    }
 
-        if (file_exists($customRouting) && is_file($customRouting)) {
-            include $customRouting;
-        }
+    /**
+     * Always add custom routing
+     */
+
+    $customRouting = APP_PATH . '/modules/' . $moduleName . '/config/router.php';
+
+    if (file_exists($customRouting) && is_file($customRouting)) {
+        include $customRouting;
     }
 }
-
-// additional
-$router->add('/signin',array(
-    'namespace' => 'App\Common\Controllers',
-    'controller' => 'sign',
-    'action' => 'in',
-));
-$router->add('/signup',array(
-    'namespace' => 'App\Common\Controllers',
-    'controller' => 'sign',
-    'action' => 'up',
-));
-
 
 $router->handle($container->get('request_uri'));
