@@ -1,9 +1,9 @@
 <?php
 
-namespace ProjectName\Example\Controllers\Api;
+namespace Dengarin\Main\Controllers\Api;
 
-use ProjectName\Example\Controllers\BaseController;
-use ProjectName\Example\Models\User;
+use Dengarin\Main\Controllers\BaseController;
+use Dengarin\Main\Models\User;
 
 class IndexController extends BaseController
 {

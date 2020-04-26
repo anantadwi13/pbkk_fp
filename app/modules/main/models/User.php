@@ -1,6 +1,6 @@
 <?php
 
-namespace ProjectName\Example\Models;
+namespace Dengarin\Main\Models;
 
 use Phalcon\Mvc\Model;
 

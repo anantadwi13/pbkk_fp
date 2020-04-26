@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace ProjectName\Example\Controllers;
+namespace Dengarin\Main\Controllers;
 
 use Phalcon\Mvc\Controller;
 

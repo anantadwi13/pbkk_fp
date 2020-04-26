@@ -1,8 +1,8 @@
 <?php
 
-namespace ProjectName\Example\Controllers\Web;
+namespace Dengarin\Main\Controllers\Web;
 
-use ProjectName\Example\Controllers\BaseController;
+use Dengarin\Main\Controllers\BaseController;
 
 class IndexController extends BaseController
 {
