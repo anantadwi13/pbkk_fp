@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Dengarin\Main\Controllers;
 
-use App\Common\Controllers\CommonController;
+use App\Common\Controllers\AppController;
 
-class BaseController extends CommonController
+class ModuleController extends AppController
 {
     public function initialize(){
         parent::initialize();

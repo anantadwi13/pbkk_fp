@@ -8,7 +8,7 @@ use App\Utils\Sidebar\Item\SubMenu;
 use App\Utils\Sidebar\Menu;
 use Phalcon\Mvc\Controller;
 
-class CommonController extends Controller
+class AppController extends Controller
 {
     public function initialize()
     {
