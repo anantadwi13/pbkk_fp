@@ -156,5 +156,16 @@ foreach ($this->modules as $moduleName => $module) {
     }
 }
 
+// additional
+// $router->add('/login',array(
+//     ''
+// ));
+// $router->add('/api/:controller/:action/:params', array(
+//     'namespace' => $this->modules[$defaultModule]['namespace']['apiController'],
+//     'module' => $defaultModule,
+//     'controller' => 1,
+//     'action' => 2,
+//     'params' => 3
+// ));
 
 $router->handle($container->get('request_uri'));
