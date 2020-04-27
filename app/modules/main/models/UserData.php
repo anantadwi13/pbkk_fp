@@ -2,10 +2,13 @@
 
 namespace Dengarin\Main\Models;
 
+use App\Utils\ModelTraits\Timestamp;
 use Phalcon\Mvc\Model;
 
 class UserData extends Model
 {
+    use Timestamp;
+
     public $id;
     public $bio;
 
