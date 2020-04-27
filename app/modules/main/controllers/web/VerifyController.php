@@ -11,9 +11,8 @@ class VerifyController extends ModuleController
         $this->view->setVars([
             'name' => 'Testing',
             'role' => 'Admin',
-            'title' => 'Title',
+            'title' => 'Verifikasi Akun',
             'body' => 'This is body'
         ]);
-        echo "This is index of web controller";
     }
 }

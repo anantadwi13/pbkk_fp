@@ -10,9 +10,8 @@ class MediaController extends ModuleController
     {
         $this->view->setVars([
             'name' => 'Testing',
-            'title' => 'Title',
+            'title' => 'Portfolio',
             'body' => 'This is body'
         ]);
-        echo "This is index of web controller";
     }
 }

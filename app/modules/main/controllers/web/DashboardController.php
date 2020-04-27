@@ -10,7 +10,7 @@ class DashboardController extends ModuleController
     {
         $this->view->setVars([
             'name' => 'Testing',
-            'title' => 'Title',
+            'title' => 'Dashboard',
             'body' => 'This is body'
         ]);
     }
@@ -18,5 +18,13 @@ class DashboardController extends ModuleController
     public function signOutAction(){
         $this->clearAuth();
         $this->response->redirect('/signin');
+    }
+
+    public function managementAction(){
+        $this->view->setVars([
+            'name' => 'Testing',
+            'role' => 'Admin',
+            'title' => 'Manajemen Akun',
+        ]);
     }
 }

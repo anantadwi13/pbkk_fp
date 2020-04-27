@@ -1,13 +1,18 @@
-
             <!-- Main Container -->
             <main id="main-container">
 
                 <!-- Page Content -->
-                <div class="content">
-                    <div class="my-100 text-center">
-                        <h2 class="font-w700 text-black mb-10">
-                            Homepage Dengar.in!
-                        </h2>
+                <div class="bg-image" style="background-image: url('assets/media/photos/photo45.jpg');">
+                    <div class="hero bg-primary-dark-op">
+                        <div class="hero-inner">
+                            <div class="content content-full text-center">
+                                <h1 class="display-4 font-w700 text-white mb-10 invisible" data-toggle="appear" data-class="animated fadeInDown">Dengar.in</h1>
+                                <h2 class="font-w400 text-white-op mb-50 invisible" data-toggle="appear" data-class="animated fadeInUp" data-timeout="250">It’s Time to Create Your Next Amazing Performance</h2>
+                                <a class="btn btn-hero btn-noborder btn-rounded btn-primary invisible" data-toggle="appear" data-class="animated bounceIn" data-timeout="750" href="{{url('/signup')}}">
+                                    <i class="si si-rocket mr-10"></i> Get Started
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- END Page Content -->
