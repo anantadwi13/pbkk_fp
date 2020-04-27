@@ -22,12 +22,12 @@
                             <!-- END Personal -->
 
                             <!-- Actions -->
-                            <!-- <button type="button" class="btn btn-rounded btn-hero btn-sm btn-alt-success mb-5">
+                            <button type="button" class="btn btn-rounded btn-hero btn-sm btn-alt-success mb-5">
                                 <i class="fa fa-plus mr-5"></i> Add Friend
                             </button>
-                            <button type="button" class="btn btn-rounded btn-hero btn-sm btn-alt-primary mb-5">
-                                <i class="fa fa-envelope-o mr-5"></i> Message
-                            </button> -->
+                            <button type="button" class="btn btn-rounded btn-hero btn-sm btn-alt-danger mb-5">
+                                <i class="fa fa-times mr-5"></i> Block
+                            </button>
                             <!-- END Actions -->
                         </div>
                     </div>
