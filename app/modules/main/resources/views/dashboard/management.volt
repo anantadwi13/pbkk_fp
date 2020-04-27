@@ -22,7 +22,7 @@
                                         <th class="d-none d-sm-table-cell">Password</th>
                                         <th class="d-none d-sm-table-cell" style="width: 15%;">Role</th>
                                         <th class="d-none d-sm-table-cell" style="width: 15%;">Status</th>
-                                        <th class="text-center" style="width: 15%;">Action</th>
+                                        <th class="text-center" style="width: 15%;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -39,12 +39,14 @@
                                             <span class="badge badge-primary">Aktif</span>
                                         </td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
-                                                <i class="fa fa-pencil"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -60,12 +62,14 @@
                                             <span class="badge badge-primary">Aktif</span>
                                         </td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
-                                                <i class="fa fa-pencil"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -81,12 +85,14 @@
                                             <span class="badge badge-primary">Aktif</span>
                                         </td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
-                                                <i class="fa fa-pencil"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -102,12 +108,14 @@
                                             <span class="badge badge-danger">Non-Aktif</span>
                                         </td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
-                                                <i class="fa fa-pencil"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -123,12 +131,14 @@
                                             <span class="badge badge-primary">Aktif</span>
                                         </td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
-                                                <i class="fa fa-pencil"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -144,12 +154,14 @@
                                             <span class="badge badge-danger">Non-Aktif</span>
                                         </td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
-                                                <i class="fa fa-pencil"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -165,12 +177,14 @@
                                             <span class="badge badge-danger">Non-Aktif</span>
                                         </td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
-                                                <i class="fa fa-pencil"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -186,12 +200,14 @@
                                             <span class="badge badge-primary">Aktif</span>
                                         </td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
-                                                <i class="fa fa-pencil"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -207,12 +223,14 @@
                                             <span class="badge badge-primary">Aktif</span>
                                         </td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
-                                                <i class="fa fa-pencil"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 </tbody>
