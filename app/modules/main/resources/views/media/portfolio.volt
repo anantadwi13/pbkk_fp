@@ -112,7 +112,7 @@
                         <div class="block-content block-content-full">
                             <p class="font-size-sm text-muted float-sm-right mb-5"><em>3:30</em></p>
                             <h4 class="font-size-default text-primary mb-0">
-                                <i class="fa fa-newspaper-o text-muted mr-5"></i> 5 things
+                                <i class="fa fa-music text-muted mr-5"></i> 5 things
                             </h4>
                         </div>
                     </a>
@@ -120,7 +120,7 @@
                         <div class="block-content block-content-full">
                             <p class="font-size-sm text-muted float-sm-right mb-5"><em>2:42</em></p>
                             <h4 class="font-size-default text-primary mb-0">
-                                <i class="fa fa-newspaper-o text-muted mr-5"></i> Soul Sand
+                                <i class="fa fa-music text-muted mr-5"></i> Soul Sand
                             </h4>
                         </div>
                     </a>
@@ -128,7 +128,7 @@
                         <div class="block-content block-content-full">
                             <p class="font-size-sm text-muted float-sm-right mb-5"><em>2:42</em></p>
                             <h4 class="font-size-default text-primary mb-0">
-                                <i class="fa fa-newspaper-o text-muted mr-5"></i> 10 Important things I wish I knew
+                                <i class="fa fa-music text-muted mr-5"></i> 10 Important things I wish I knew
                             </h4>
                         </div>
                     </a>
@@ -136,7 +136,7 @@
                         <div class="block-content block-content-full">
                             <p class="font-size-sm text-muted float-sm-right mb-5"><em>2:42</em></p>
                             <h4 class="font-size-default text-primary mb-0">
-                                <i class="fa fa-newspaper-o text-muted mr-5"></i> Bringing your productivity back
+                                <i class="fa fa-music text-muted mr-5"></i> Bringing your productivity back
                             </h4>
                         </div>
                     </a>
@@ -144,7 +144,7 @@
                         <div class="block-content block-content-full">
                             <p class="font-size-sm text-muted float-sm-right mb-5"><em>2:42</em></p>
                             <h4 class="font-size-default text-primary mb-0">
-                                <i class="fa fa-newspaper-o text-muted mr-5"></i> Super Smooth
+                                <i class="fa fa-music text-muted mr-5"></i> Super Smooth
                             </h4>
                         </div>
                     </a>
