@@ -10,7 +10,7 @@ class IndexController extends ModuleController
     {
         $this->view->setVars([
             'name' => 'Testing',
-            'title' => 'TItle',
+            'title' => 'Title',
             'body' => 'This is body'
         ]);
         echo "This is index of web controller";
