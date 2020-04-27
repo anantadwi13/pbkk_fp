@@ -1,6 +1,7 @@
 <?php
 
 use Dengarin\Main\Controllers\Web\AuthController;
+use Dengarin\Main\Controllers\Web\DashboardController;
 use Dengarin\Main\Controllers\Web\IndexController;
 use Dengarin\Main\Controllers\Web\MediaController;
 use Dengarin\Main\Controllers\Web\VerifyController;
@@ -22,6 +23,7 @@ $acl->setDefaultAction(Enum::ALLOW);
  */
 $components = [
     [IndexController::class, ['index']],
+    [DashboardController::class, ['index']],
     [AuthController::class, ['index', 'signup']],
     [MediaController::class, ['index']],
     [VerifyController::class, ['index']],
@@ -40,7 +42,9 @@ foreach ($components as $component) {
  * Defining Access Controls
  */
 $accesses = [
-    [Enum::DENY, User::ROLE_ADMIN, IndexController::class, ['index']],
+    [Enum::DENY, User::ROLE_GUEST, DashboardController::class, ['index']],
+    [Enum::DENY, User::ROLE_GUEST, MediaController::class, ['index']],
+    [Enum::DENY, User::ROLE_GUEST, VerifyController::class, ['index']],
 ];
 
 foreach ($accesses as $access){

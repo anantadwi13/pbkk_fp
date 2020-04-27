@@ -16,6 +16,7 @@ class User extends Model
     const ROLE_ADMIN = 'admin';
     const ROLE_SOUND = 'sound';
     const ROLE_AMPLIFIER = 'amplifier';
+    const ROLE_GUEST = 'guest';
 
     public $id;
     public $username;

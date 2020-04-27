@@ -11,3 +11,4 @@ $acl->setDefaultAction(Enum::DENY);
 $acl->addRole(User::ROLE_ADMIN);
 $acl->addRole(User::ROLE_AMPLIFIER);
 $acl->addRole(User::ROLE_SOUND);
+$acl->addRole(User::ROLE_GUEST);
