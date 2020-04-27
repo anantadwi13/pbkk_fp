@@ -23,3 +23,18 @@ $apiNamespace = $module['namespace']['apiController'];
  * ]);
  *
  */
+
+// additional
+$router->add('/signin',array(
+    'namespace' => $webNamespace,
+    'module' => $moduleName,
+    'controller' => 'auth',
+    'action' => 'signIn',
+));
+
+$router->add('/signup',array(
+    'namespace' => $webNamespace,
+    'module' => $moduleName,
+    'controller' => 'auth',
+    'action' => 'signUp',
+));
