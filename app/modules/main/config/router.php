@@ -24,7 +24,7 @@ $apiNamespace = $module['namespace']['apiController'];
  *
  */
 
-// additional
+// auth
 $router->add('/signin',array(
     'namespace' => $webNamespace,
     'module' => $moduleName,
@@ -52,4 +52,11 @@ $router->add('/verify',array(
     'module' => $moduleName,
     'controller' => 'verify',
     'action' => 'verify',
+));
+
+$router->add('/management',array(
+    'namespace' => $webNamespace,
+    'module' => $moduleName,
+    'controller' => 'dashboard',
+    'action' => 'management',
 ));
