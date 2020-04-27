@@ -84,13 +84,15 @@
                     </div>
                     <!-- END Left Section -->
 
+
+                    {% if auth is defined %}
                     <!-- Right Section -->
                     <div class="content-header-section">
                         <!-- User Dropdown -->
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-user d-sm-none"></i>
-                                <span class="d-none d-sm-inline-block">{% if auth is defined %}{{ auth.nama }}{% endif %}</span>
+                                <span class="d-none d-sm-inline-block">{{ auth.name }}</span>
                                 <i class="fa fa-angle-down ml-5"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown">
@@ -107,6 +109,20 @@
                         <!-- END User Dropdown -->
                     </div>
                     <!-- END Right Section -->
+                    {% else %}
+                    <!-- Right Section -->
+                    <div class="content-header-section">
+                        <!-- User Dropdown -->
+                        <div class="btn-group" role="group">
+                            <a href="{{ url('/signin') }}" class="btn btn-rounded btn-dual-secondary">
+                                <i class="fa fa-user d-sm-none"></i>
+                                <span class="d-none d-sm-inline-block">Sign In</span>
+                            </a>
+                        </div>
+                        <!-- END User Dropdown -->
+                    </div>
+                    <!-- END Right Section -->
+                    {% endif %}
                 </div>
                 <!-- END Header Content -->
 
