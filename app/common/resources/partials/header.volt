@@ -1,6 +1,6 @@
 
             <!-- Header -->
-            <header id="page-header">
+            <header id="">
                 <!-- Header Content -->
                 <div class="content-header">
                     <!-- Left Section -->
