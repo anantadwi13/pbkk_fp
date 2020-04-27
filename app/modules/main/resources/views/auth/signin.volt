@@ -1,9 +1,12 @@
 
             <!-- SignIn Container -->
             <div class="content content-full">
+                <div class="px-30">
+                    {{ flashSession.output() }}
+                </div>
                 <!-- Header -->
                 <div class="px-30 py-10">
-                    <a class="link-effect font-w700" href="index.html">
+                    <a class="link-effect font-w700" href="{{ url('/') }}">
                         <i class="si si-fire"></i>
                         <span class="font-size-xl text-primary-dark">dengar.</span><span class="font-size-xl">in</span>
                     </a>
@@ -15,7 +18,8 @@
                 <!-- Sign In Form -->
                 <!-- jQuery Validation functionality is initialized with .js-validation-signin class in js/pages/op_auth_signin.min.js which was auto compiled from _es6/pages/op_auth_signin.js -->
                 <!-- For more examples you can check out https://github.com/jzaefferer/jquery-validation -->
-                <form class="js-validation-signin px-30" action="be_pages_auth_all.html" method="post">
+                <form class="js-validation-signin px-30" method="post">
+                    <input type="hidden" name="{{ security.getTokenKey() }}" value="{{ security.getToken() }}">
                     <div class="form-group row">
                         <div class="col-12">
                             <div class="form-material floating">
@@ -48,7 +52,7 @@
                             <a class="link-effect text-muted mr-10 mb-5 d-inline-block" href="{{ url('/signup') }}">
                                 <i class="fa fa-plus mr-5"></i> Create Account
                             </a>
-                            <a class="link-effect text-muted mr-10 mb-5 d-inline-block" href="op_auth_reminder2.html">
+                            <a class="link-effect text-muted mr-10 mb-5 d-inline-block" href="#">
                                 <i class="fa fa-warning mr-5"></i> Forgot Password
                             </a>
                         </div>
