@@ -19,6 +19,9 @@
                             <h2 class="h5 text-white-op">
                                 Vocalist <a class="text-primary-light" href="javascript:void(0)">@DoremI</a>
                             </h2>
+                            <h2 class="h5 text-white-op">
+                                Poin Dengar: <p class="text-primary-light">100</p>
+                            </h2>
                             <!-- END Personal -->
 
                             <!-- Actions -->
