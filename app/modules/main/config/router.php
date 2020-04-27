@@ -38,3 +38,18 @@ $router->add('/signup',array(
     'controller' => 'auth',
     'action' => 'signUp',
 ));
+
+$router->add('/portfolio',array(
+    'namespace' => $webNamespace,
+    'module' => $moduleName,
+    'controller' => 'media',
+    'action' => 'portfolio',
+));
+
+// admin
+$router->add('/verify',array(
+    'namespace' => $webNamespace,
+    'module' => $moduleName,
+    'controller' => 'verify',
+    'action' => 'verify',
+));

@@ -5,7 +5,7 @@
                 <div class="px-30 py-10">
                     <a class="link-effect font-w700" href="index.html">
                         <i class="si si-fire"></i>
-                        <span class="font-size-xl text-primary-dark">code</span><span class="font-size-xl">base</span>
+                        <span class="font-size-xl text-primary-dark">dengar.</span><span class="font-size-xl">in</span>
                     </a>
                     <h1 class="h3 font-w700 mt-30 mb-10">Welcome to Your Dashboard</h1>
                     <h2 class="h5 font-w400 text-muted mb-0">Please sign in</h2>
@@ -45,7 +45,7 @@
                             <i class="si si-login mr-10"></i> Sign In
                         </button>
                         <div class="mt-30">
-                            <a class="link-effect text-muted mr-10 mb-5 d-inline-block" href="op_auth_signup2.html">
+                            <a class="link-effect text-muted mr-10 mb-5 d-inline-block" href="{{ url('/signup') }}">
                                 <i class="fa fa-plus mr-5"></i> Create Account
                             </a>
                             <a class="link-effect text-muted mr-10 mb-5 d-inline-block" href="op_auth_reminder2.html">
