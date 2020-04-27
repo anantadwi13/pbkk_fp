@@ -30,14 +30,14 @@ $router->add('/signin',array(
     'module' => $moduleName,
     'controller' => 'auth',
     'action' => 'signIn',
-));
+))->setName('signin');
 
 $router->add('/signup',array(
     'namespace' => $webNamespace,
     'module' => $moduleName,
     'controller' => 'auth',
     'action' => 'signUp',
-));
+))->setName('signup');
 
 $router->add('/portfolio',array(
     'namespace' => $webNamespace,
@@ -46,17 +46,19 @@ $router->add('/portfolio',array(
     'action' => 'portfolio',
 ));
 
+
 // admin
-$router->add('/verify',array(
+
+$router->add('/dashboard/user',array(
+    'namespace' => $webNamespace,
+    'module' => $moduleName,
+    'controller' => 'user',
+    'action' => 'index',
+))->setName('main-user-index');
+
+$router->add('/dashboard/user/verification',array(
     'namespace' => $webNamespace,
     'module' => $moduleName,
     'controller' => 'verify',
     'action' => 'verify',
-));
-
-$router->add('/management',array(
-    'namespace' => $webNamespace,
-    'module' => $moduleName,
-    'controller' => 'dashboard',
-    'action' => 'management',
-));
+))->setName('main-user-verification');
