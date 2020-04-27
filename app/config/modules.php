@@ -14,5 +14,5 @@ return [
             'defaultController' => 'index',
             'defaultAction' => 'index',
         ],
-    ]
+    ],
 ];

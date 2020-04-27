@@ -16,6 +16,7 @@ use Phalcon\Mvc\ViewBaseInterface;
 use Phalcon\Session\Adapter\Stream as SessionAdapter;
 use Phalcon\Session\Manager as SessionManager;
 use Phalcon\Url as UrlResolver;
+use Phalcon\Acl\Adapter\Memory as ACLMemory;
 
 /**
  * Shared configuration service
@@ -177,19 +178,14 @@ $container->setShared('dispatcher', function () {
     $eventsManager->attach(
         'dispatch:beforeException',
         function (Event $event, Dispatcher $dispatcher, Exception $exception) {
-            /** @var Config $config */
-            $config = $dispatcher->getDI()->getConfig();
-            /** @var View $view */
-            $view = $dispatcher->getDI()->get('view');
-            // Reset Base Directory Views
-            $view->setViewsDir($config->application->commonResourceDir . '/views/');
-            $view->setLayoutsDir($config->application->commonResourceDir . '/layouts/');
-            $view->setPartialsDir($config->application->commonResourceDir . '/partials/');
-            $view->setLayout('main');
-
-
             // 404
             if ($exception instanceof \Phalcon\Dispatcher\Exception) {
+                $config = $dispatcher->getDI()->getConfig();
+
+                //Show error on development mode
+                if ($config->mode==='DEVELOPMENT')
+                    return true;
+
                 $dispatcher->forward(
                     [
                         'namespace' => 'App\Common\Controllers',
@@ -210,4 +206,12 @@ $container->setShared('dispatcher', function () {
 
     return $dispatcher;
 
+});
+
+$container->setShared('acl', function () {
+    $acl = new ACLMemory();
+
+    include_once __DIR__ . '/acl.php';
+
+    return $acl;
 });

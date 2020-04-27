@@ -14,6 +14,11 @@ $loader->registerNamespaces([
     'Phalcon\Db' => APP_PATH . '/lib/Phalcon/Db',
     'App\Common\Controllers' => APP_PATH . '/common/controllers',
     'App\Utils' => APP_PATH . '/utils',
+
+    /**
+     * To be used for all modules
+     */
+    'Dengarin\Main\Models' => APP_PATH . '/modules/main/models',
 ]);
 
 $loader->register();
