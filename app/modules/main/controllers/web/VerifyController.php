@@ -3,6 +3,7 @@
 namespace Dengarin\Main\Controllers\Web;
 
 use Dengarin\Main\Controllers\ModuleController;
+use Dengarin\Main\Models\User;
 
 class VerifyController extends ModuleController
 {
