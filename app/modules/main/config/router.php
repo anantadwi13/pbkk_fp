@@ -46,6 +46,12 @@ $router->add('/portfolio',array(
     'action' => 'portfolio',
 ));
 
+$router->add('/dashboard',array(
+    'namespace' => $webNamespace,
+    'module' => $moduleName,
+    'controller' => 'dashboard',
+    'action' => 'index',
+))->setName('main-dashboard-index');
 
 // admin
 

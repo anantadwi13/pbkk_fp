@@ -2,10 +2,9 @@
 
 namespace Dengarin\Main\Models;
 
+use App\Utils\ModelTraits\Timestamp;
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Resultset\Simple;
-use Phalcon\Validation;
-use Phalcon\Validation\Validator\Confirmation;
 
 /**
  * Class User
@@ -15,6 +14,8 @@ use Phalcon\Validation\Validator\Confirmation;
  */
 class User extends Model
 {
+    use Timestamp;
+
     const ROLE_ADMIN = 'admin';
     const ROLE_SOUND = 'sound';
     const ROLE_AMPLIFIER = 'amplifier';
@@ -43,7 +44,7 @@ class User extends Model
 
     public function isStatus(int $statusCode): bool
     {
-        return $this->status & $statusCode;
+        return ($this->status & $statusCode) == $statusCode;
     }
 
     public function enableStatus(int $statusCode){
