@@ -21,10 +21,7 @@ class AppController extends Controller
             ->addItem(new Anchor('Invitation', $this->url->get('/sound'), 'si si-envelope-letter'))
 
             ->addHeading('Challenge', 'Ch')
-            ->addItem(
-                (new SubMenu('Submenu', 'si si-cup'))
-                    ->addItem(new Anchor('Item', '#'))
-            );
+            ->addItem(new Anchor('Kompetisi', $this->url->get('/competition'), 'si si-trophy'));
 
         $this->setSideBar($sidebar);
     }
