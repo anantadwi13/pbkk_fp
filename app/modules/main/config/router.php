@@ -38,3 +38,10 @@ $router->add('/signup',array(
     'controller' => 'auth',
     'action' => 'signUp',
 ));
+
+$router->add('/portfolio',array(
+    'namespace' => $webNamespace,
+    'module' => $moduleName,
+    'controller' => 'media',
+    'action' => 'portfolio',
+));
