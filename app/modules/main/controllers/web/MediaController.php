@@ -4,9 +4,9 @@ namespace Dengarin\Main\Controllers\Web;
 
 use Dengarin\Main\Controllers\ModuleController;
 
-class IndexController extends ModuleController
+class MediaController extends ModuleController
 {
-    public function indexAction()
+    public function portfolioAction()
     {
         $this->view->setVars([
             'name' => 'Testing',
