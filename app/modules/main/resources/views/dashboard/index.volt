@@ -8,7 +8,7 @@
 
                     <div class="my-100 text-center">
                         <h2 class="font-w700 text-black mb-10">
-                            Halo, {{ auth.nama }}!
+                            Halo, {{ auth.name }}!
                         </h2>
                         <h3 class="h5 text-muted mb-0">
                             Selamat Datang di Dengar.in!

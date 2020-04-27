@@ -19,12 +19,4 @@ class DashboardController extends ModuleController
         $this->clearAuth();
         $this->response->redirect('/signin');
     }
-
-    public function managementAction(){
-        $this->view->setVars([
-            'name' => 'Testing',
-            'role' => 'Admin',
-            'title' => 'Manajemen Akun',
-        ]);
-    }
 }

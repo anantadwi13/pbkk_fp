@@ -2,7 +2,7 @@
             <main id="main-container">
 
                 <!-- Page Content -->
-                <div class="bg-image" style="background-image: url('assets/media/photos/photo45.jpg');">
+                <div class="bg-image" style="background-image: url('{{ url('/') }}assets/media/photos/photo45.jpg');">
                     <div class="hero bg-primary-dark-op">
                         <div class="hero-inner">
                             <div class="content content-full text-center">

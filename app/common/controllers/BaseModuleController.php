@@ -15,12 +15,13 @@ use Phalcon\Acl\Adapter\Memory;
  */
 class BaseModuleController extends AppController
 {
-    protected $auth;
+    private $sidebar;
 
     public function initialize()
     {
+        parent::initialize();
         $sidebar = new Menu();
-        $sidebar->addItem(new Anchor('Dashboard', $this->url->get('/'), 'si si-cup'))
+        $sidebar->addItem(new Anchor('Dashboard', $this->url->get('/dashboard'), 'si si-cup'))
             ->addHeading('Collaboration', 'Co')
             ->addItem(new Anchor('Sounds', $this->url->get('/sound'), 'si si-volume-2'))
             ->addItem(new Anchor('Jadwal', $this->url->get('/calendar'), 'si si-calendar'))
@@ -34,7 +35,6 @@ class BaseModuleController extends AppController
     public function onConstruct()
     {
         $role = User::ROLE_GUEST;
-        $this->attachAuth();
         if ($this->isAuthenticated())
             $role = $this->auth()->role;
 
@@ -46,40 +46,6 @@ class BaseModuleController extends AppController
                 $this->response->redirect('/signin');
             else
                 $this->redirectPermissionDenied();
-    }
-
-    public function setAuth(User $user)
-    {
-        $this->clearAuth();
-        $this->session->set('auth', $user);
-    }
-
-    private function attachAuth(){
-        $this->auth = $this->auth();
-        $this->view->setVar('auth', $this->auth);
-    }
-
-    public function clearAuth()
-    {
-        $this->auth = null;
-        $this->session->remove('auth');
-        $this->view->setVar('auth', null);
-    }
-
-    /**
-     * @return User|null
-     */
-    public function auth()
-    {
-        return $this->session->get('auth', null);
-    }
-
-    public function isAuthenticated()
-    {
-        $user = $this->auth();
-        if ($user)
-            return true;
-        return false;
     }
 
     public function redirectNotFound()
@@ -109,6 +75,15 @@ class BaseModuleController extends AppController
      */
     public function setSideBar($sidebar)
     {
+        $this->sidebar = $sidebar;
         $this->view->sidebar = $sidebar;
+    }
+
+    /**
+     * @return Menu|null
+     */
+    public function getSidebar()
+    {
+        return $this->sidebar;
     }
 }
