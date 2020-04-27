@@ -15,4 +15,18 @@ return [
             'defaultAction' => 'index',
         ],
     ],
+    'collaboration' => [
+        'className' => 'Dengarin\Collaboration\Module',
+        'path' => APP_PATH . '/modules/collaboration/Module.php',
+        'namespace' => [
+            'base' => 'Dengarin\Collaboration',
+            'webController' => 'Dengarin\Collaboration\Controllers\Web',
+            'apiController' => 'Dengarin\Collaboration\Controllers\Api'
+        ],
+        'routing' => [
+            'useDefault' => true,
+            'defaultController' => 'index',
+            'defaultAction' => 'index',
+        ],
+    ],
 ];
