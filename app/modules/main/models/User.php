@@ -13,12 +13,16 @@ use Phalcon\Mvc\Model\Resultset\Simple;
  */
 class User extends Model
 {
+    const ROLE_ADMIN = 'admin';
+    const ROLE_SOUND = 'sound';
+    const ROLE_AMPLIFIER = 'amplifier';
+
     public $id;
     public $username;
     public $email;
     public $nama;
     public $password;
-    public $tipe;
+    public $role;
     public $status;
 
     public function initialize(){

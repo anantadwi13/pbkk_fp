@@ -25,3 +25,5 @@ $view->setViewsDir(__DIR__ . '/../resources/views/');
 /**
  * Register your custom services here
  */
+
+include_once __DIR__ . '/acl.php';
