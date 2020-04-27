@@ -2,6 +2,7 @@
 
 namespace Dengarin\Main\Models;
 
+use App\Utils\ModelTraits\StatusTrait;
 use App\Utils\ModelTraits\Timestamp;
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Resultset\Simple;
@@ -14,7 +15,7 @@ use Phalcon\Mvc\Model\Resultset\Simple;
  */
 class User extends Model
 {
-    use Timestamp;
+    use Timestamp, StatusTrait;
 
     const ROLE_ADMIN = 'admin';
     const ROLE_SOUND = 'sound';
@@ -31,7 +32,6 @@ class User extends Model
     public $name;
     public $password;
     public $role;
-    private $status;
 
     public function initialize()
     {
@@ -40,20 +40,5 @@ class User extends Model
             'reusable' => true,
             'alias' => 'data'
         ]);
-    }
-
-    public function isStatus(int $statusCode): bool
-    {
-        return ($this->status & $statusCode) == $statusCode;
-    }
-
-    public function enableStatus(int $statusCode){
-        if (!$this->isStatus($statusCode))
-            $this->status ^= $statusCode;
-    }
-
-    public function disableStatus(int $statusCode){
-        if ($this->isStatus($statusCode))
-            $this->status ^= $statusCode;
     }
 }
