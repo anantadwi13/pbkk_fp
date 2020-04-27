@@ -65,12 +65,12 @@
                             <ul class="list-inline mt-10">
                                 <li class="list-inline-item">
                                     <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href="{{ url('/') }}">
-                                        {{ auth.name }}
+                                        <i class="si si-user"></i> {{ auth.nama }}
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
                                     <a class="link-effect text-dual-primary-dark" href="{{ url('/dashboard/signout') }}">
-                                        <i class="si si-logout"></i>
+                                        <i class="si si-logout"></i> Sign Out
                                     </a>
                                 </li>
                             </ul>
