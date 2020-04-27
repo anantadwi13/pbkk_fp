@@ -59,6 +59,6 @@ $router->add('/dashboard/user',array(
 $router->add('/dashboard/user/verification',array(
     'namespace' => $webNamespace,
     'module' => $moduleName,
-    'controller' => 'verify',
-    'action' => 'verify',
+    'controller' => 'user',
+    'action' => 'verification',
 ))->setName('main-user-verification');

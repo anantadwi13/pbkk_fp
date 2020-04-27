@@ -3,7 +3,7 @@
 
                 <!-- Page Content -->
                 <div class="content">
-                    <h2 class="content-heading">User Management Tables<small> for {{ name }}: {{ role }} only</small></h2>
+                    <h2 class="content-heading">User Management Tables</h2>
 
                     <!-- Dynamic Table Full Pagination -->
                     <div class="block">
@@ -26,17 +26,34 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {% for user in users %}
                                     <tr>
-                                        <td class="text-center">1</td>
-                                        <td class="font-w600">Judy Ford</td>
-                                        <td class="d-none d-sm-table-cell">customer1@example.com</td>
-                                        <td class="d-none d-sm-table-cell">custom Name</td>
+                                        <td class="text-center">{{ loop.index }}</td>
+                                        <td class="font-w600">{{ user.username }}</td>
+                                        <td class="d-none d-sm-table-cell">{{ user.email }}</td>
+                                        <td class="d-none d-sm-table-cell">{{ user.name }}</td>
                                         <td class="d-none d-sm-table-cell">customPassword</td>
                                         <td class="d-none d-sm-table-cell">
-                                            <span class="badge badge-secondary">Admin</span>
+                                            {% switch user.role %}
+                                            {% case constant('Dengarin\Main\Models\User::ROLE_ADMIN') %}
+                                                <span class="badge badge-secondary">Admin</span>
+                                            {% break %}
+                                            {% case constant('Dengarin\Main\Models\User::ROLE_SOUND') %}
+                                                <span class="badge badge-success">Sound</span>
+                                            {% break %}
+                                            {% case constant('Dengarin\Main\Models\User::ROLE_AMPLIFIER') %}
+                                                <span class="badge badge-info">Amplifier</span>
+                                            {% break %}
+                                            {% endswitch %}
                                         </td>
                                         <td class="d-none d-sm-table-cell">
-                                            <span class="badge badge-primary">Aktif</span>
+                                            {% if user.isStatus(constant('Dengarin\Main\Models\User::STATUS_DISABLED')) %}
+                                                <span class="badge badge-danger">Banned</span>
+                                            {% elseif user.isStatus(constant('Dengarin\Main\Models\User::STATUS_VERIFIED_ACCOUNT')) %}
+                                                <span class="badge badge-primary">Aktif</span>
+                                            {% else %}
+                                                <span class="badge badge-secondary">Tidak Aktif</span>
+                                            {% endif %}
                                         </td>
                                         <td class="text-center">
                                             <div class="btn-group">
@@ -49,190 +66,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="text-center">2</td>
-                                        <td class="font-w600">Lisa Jenkins</td>
-                                        <td class="d-none d-sm-table-cell">customer2@example.com</td>
-                                        <td class="d-none d-sm-table-cell">custom Name</td>
-                                        <td class="d-none d-sm-table-cell">customPassword</td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <span class="badge badge-success">Sound</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <span class="badge badge-primary">Aktif</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
-                                                    <i class="fa fa-pencil"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">3</td>
-                                        <td class="font-w600">Marie Duncan</td>
-                                        <td class="d-none d-sm-table-cell">customer3@example.com</td>
-                                        <td class="d-none d-sm-table-cell">custom Name</td>
-                                        <td class="d-none d-sm-table-cell">customPassword</td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <span class="badge badge-info">Amplifier</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <span class="badge badge-primary">Aktif</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
-                                                    <i class="fa fa-pencil"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">4</td>
-                                        <td class="font-w600">Melissa Rice</td>
-                                        <td class="d-none d-sm-table-cell">customer4@example.com</td>
-                                        <td class="d-none d-sm-table-cell">custom Name</td>
-                                        <td class="d-none d-sm-table-cell">customPassword</td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <span class="badge badge-success">Sound</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <span class="badge badge-danger">Non-Aktif</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
-                                                    <i class="fa fa-pencil"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">5</td>
-                                        <td class="font-w600">Wayne Garcia</td>
-                                        <td class="d-none d-sm-table-cell">customer5@example.com</td>
-                                        <td class="d-none d-sm-table-cell">custom Name</td>
-                                        <td class="d-none d-sm-table-cell">customPassword</td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <span class="badge badge-info">Amplifier</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <span class="badge badge-primary">Aktif</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
-                                                    <i class="fa fa-pencil"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">6</td>
-                                        <td class="font-w600">Amanda Powell</td>
-                                        <td class="d-none d-sm-table-cell">customer6@example.com</td>
-                                        <td class="d-none d-sm-table-cell">custom Name</td>
-                                        <td class="d-none d-sm-table-cell">customPassword</td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <span class="badge badge-info">Amplifier</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <span class="badge badge-danger">Non-Aktif</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
-                                                    <i class="fa fa-pencil"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">7</td>
-                                        <td class="font-w600">Carol Ray</td>
-                                        <td class="d-none d-sm-table-cell">customer7@example.com</td>
-                                        <td class="d-none d-sm-table-cell">custom Name</td>
-                                        <td class="d-none d-sm-table-cell">customPassword</td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <span class="badge badge-success">Sound</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <span class="badge badge-danger">Non-Aktif</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
-                                                    <i class="fa fa-pencil"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">8</td>
-                                        <td class="font-w600">Justin Hunt</td>
-                                        <td class="d-none d-sm-table-cell">customer8@example.com</td>
-                                        <td class="d-none d-sm-table-cell">custom Name</td>
-                                        <td class="d-none d-sm-table-cell">customPassword</td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <span class="badge badge-secondary">Admin</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <span class="badge badge-primary">Aktif</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
-                                                    <i class="fa fa-pencil"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">9</td>
-                                        <td class="font-w600">Jack Estrada</td>
-                                        <td class="d-none d-sm-table-cell">customer9@example.com</td>
-                                        <td class="d-none d-sm-table-cell">custom Name</td>
-                                        <td class="d-none d-sm-table-cell">customPassword</td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <span class="badge badge-secondary">Admin</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <span class="badge badge-primary">Aktif</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
-                                                    <i class="fa fa-pencil"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>
