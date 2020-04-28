@@ -7,6 +7,7 @@ namespace App\Utils\Sidebar\Item;
 class SubMenu
 {
     private $html = '';
+    public $active = false;
 
     /**
      * SubMenu constructor.
@@ -29,7 +30,8 @@ class SubMenu
      */
     public function addItem($item, $open=false): SubMenu
     {
-        $opened = $open ? 'class="open"' : '';
+        if ($open || (isset($item->active) && $item->active)) $this->active = true;
+        $opened = $this->active ? 'class="open"' : '';
         $this->html .= "<li $opened>";
         if ($item instanceof Anchor) {
             $this->html .= $item->generate();

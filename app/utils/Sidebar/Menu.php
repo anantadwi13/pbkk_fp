@@ -22,6 +22,7 @@ class Menu
      */
     public function addItem($item, $open=false): Menu
     {
+        if ($open || (isset($item->active) && $item->active)) $open = true;
         $opened = $open ? 'class="open"' : '';
         $this->html .= "<li $opened>";
         if ($item instanceof Anchor) {
