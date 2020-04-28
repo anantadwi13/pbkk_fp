@@ -159,5 +159,3 @@ foreach ($this->modules as $moduleName => $module) {
         include $customRouting;
     }
 }
-
-$router->handle($container->get('request_uri'));
