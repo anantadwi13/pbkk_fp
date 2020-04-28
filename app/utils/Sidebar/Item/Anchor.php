@@ -13,7 +13,8 @@ class Anchor extends Injectable
 
     public function __construct(string $name, string $href, $icon=null)
     {
-        $this->active = $this->request->getURI() == $href ? 'active' : '';
+        $href_uri = $this->di->get('urlToUri', [$href]);
+        $this->active = $this->request->getURI() == $href_uri ? 'active' : '';
 
         $icon_html = !empty($icon) ? "<i class=\"$icon\"></i>" : "";
         $this->html .= "<a class='$this->active' href=\"$href\">$icon_html $name</a>";
