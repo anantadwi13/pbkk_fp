@@ -2,6 +2,7 @@
 
 namespace Dengarin\Main\Models;
 
+use Dengarin\Challenge\Models\Submission;
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Resultset\Simple;
 use Phalcon\Validation;
@@ -39,6 +40,11 @@ class User extends Model
             'reusable' => true,
             'alias' => 'data'
         ]);
+        $this->hasMany(
+            'id',
+            Submission::class,
+            'id'
+        );
     }
 
     public function isStatus(int $statusCode): bool
