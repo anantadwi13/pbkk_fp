@@ -4,14 +4,20 @@
 namespace App\Utils\Sidebar\Item;
 
 
-class Anchor
+use Phalcon\Di\Injectable;
+
+class Anchor extends Injectable
 {
     private $html = '';
+    public $active = false;
 
     public function __construct(string $name, string $href, $icon=null)
     {
+        $href_uri = $this->di->get('urlToUri', [$href]);
+        $this->active = $this->request->getURI() == $href_uri ? 'active' : '';
+
         $icon_html = !empty($icon) ? "<i class=\"$icon\"></i>" : "";
-        $this->html .= "<a href=\"$href\">$icon_html $name</a>";
+        $this->html .= "<a class='$this->active' href=\"$href\">$icon_html $name</a>";
     }
 
     public function generate(): string

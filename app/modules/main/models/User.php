@@ -2,11 +2,10 @@
 
 namespace Dengarin\Main\Models;
 
-use Dengarin\Challenge\Models\Submission;
+use App\Utils\ModelTraits\StatusTrait;
+use App\Utils\ModelTraits\Timestamp;
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Resultset\Simple;
-use Phalcon\Validation;
-use Phalcon\Validation\Validator\Confirmation;
 
 /**
  * Class User
@@ -16,6 +15,8 @@ use Phalcon\Validation\Validator\Confirmation;
  */
 class User extends Model
 {
+    use Timestamp, StatusTrait;
+
     const ROLE_ADMIN = 'admin';
     const ROLE_SOUND = 'sound';
     const ROLE_AMPLIFIER = 'amplifier';
@@ -31,7 +32,6 @@ class User extends Model
     public $name;
     public $password;
     public $role;
-    private $status;
 
     public function initialize()
     {
@@ -45,20 +45,5 @@ class User extends Model
             Submission::class,
             'id'
         );
-    }
-
-    public function isStatus(int $statusCode): bool
-    {
-        return $this->status & $statusCode;
-    }
-
-    public function enableStatus(int $statusCode){
-        if (!$this->isStatus($statusCode))
-            $this->status ^= $statusCode;
-    }
-
-    public function disableStatus(int $statusCode){
-        if ($this->isStatus($statusCode))
-            $this->status ^= $statusCode;
     }
 }

@@ -21,7 +21,7 @@ class BaseModuleController extends AppController
     {
         parent::initialize();
         $sidebar = new Menu();
-        $sidebar->addItem(new Anchor('Dashboard', $this->url->get('/dashboard'), 'si si-cup'))
+        $sidebar->addItem(new Anchor('Dashboard', $this->url->get(['for' => 'main-dashboard-index']), 'si si-cup'))
             ->addHeading('Collaboration', 'Co')
             ->addItem(new Anchor('Sounds', $this->url->get('/sound'), 'si si-volume-2'))
             ->addItem(new Anchor('Jadwal', $this->url->get('/calendar'), 'si si-calendar'))
@@ -43,7 +43,7 @@ class BaseModuleController extends AppController
 
         if (!$this->acl->isAllowed($role, strtolower($controllerName), strtolower($actionName)))
             if ($role === User::ROLE_GUEST)
-                $this->response->redirect('/signin');
+                $this->response->redirect($this->url->get(['for' => 'signin']));
             else
                 $this->redirectPermissionDenied();
     }

@@ -27,10 +27,16 @@ $container->setShared('config', function () use ($config) {
     return $config;
 });
 
+$container->set('urlToUri', function ($url) {
+    return preg_replace("/^(https:\/\/|http:\/\/)(([?a-zA-Z0-9-.\+]{2,256}\.[a-z]{2,8}\b)|localhost)/",
+        "", $url);
+});
+
 $container->setShared('request_uri', function () {
     $config = $this->getConfig();
-    return $config->application->baseUri == '/' ?
-        $_SERVER['REQUEST_URI'] : str_replace($config->application->baseUri, '', $_SERVER['REQUEST_URI']);
+    $base_request_uri = $this->get('urlToUri', [$config->application->baseUri]);
+
+    return $base_request_uri == '/' ? $_SERVER['REQUEST_URI'] : str_replace($base_request_uri, '', $_SERVER['REQUEST_URI']);
 });
 
 /**
