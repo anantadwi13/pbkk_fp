@@ -24,7 +24,7 @@ return [
             'apiController' => 'Dengarin\Collaboration\Controllers\Api'
         ],
         'routing' => [
-            'useDefault' => true,
+            'useDefault' => false,
             'defaultController' => 'index',
             'defaultAction' => 'index',
         ],

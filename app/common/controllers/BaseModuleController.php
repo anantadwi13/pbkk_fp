@@ -4,6 +4,7 @@
 namespace App\Common\Controllers;
 
 use App\Utils\Sidebar\Item\Anchor;
+use App\Utils\Sidebar\Item\SubMenu;
 use App\Utils\Sidebar\Menu;
 use Dengarin\Main\Models\User;
 use Phalcon\Acl\Adapter\Memory;
@@ -20,14 +21,49 @@ class BaseModuleController extends AppController
     public function initialize()
     {
         parent::initialize();
+
+        $this->setupSideBar();
+    }
+
+
+    private function setupSideBar(){
+        $role = User::ROLE_GUEST;
         $sidebar = new Menu();
-        $sidebar->addItem(new Anchor('Dashboard', $this->url->get(['for' => 'main-dashboard-index']), 'si si-cup'))
-            ->addHeading('Collaboration', 'Co')
-            ->addItem(new Anchor('Sounds', $this->url->get('/sound'), 'si si-volume-2'))
-            ->addItem(new Anchor('Jadwal', $this->url->get('/calendar'), 'si si-calendar'))
-            ->addItem(new Anchor('Invitation', $this->url->get('/sound'), 'si si-envelope-letter'))
-            ->addHeading('Challenge', 'Ch')
-            ->addItem(new Anchor('Kompetisi', $this->url->get('/competition'), 'si si-trophy'));
+
+        if ($this->isAuthenticated())
+            $role = $this->auth()->role;
+
+        $sidebar->addItem(new Anchor('Dashboard', $this->url->get(['for' => 'main-dashboard-index']), 'si si-cup'));
+
+        switch ($role){
+            case User::ROLE_SOUND:
+                $sidebar
+                    ->addHeading('Collaboration', 'Co')
+                    ->addItem(
+                        (new SubMenu('Events', 'si si-calendar'))
+                            ->addItem(new Anchor('Manage Event', $this->url->get(['for' => 'collaboration-event-index'])))
+//                            ->addItem(new Anchor('Calendar', $this->url->get(['for' => 'collaboration-event-index-2', 'controller'=>'aaa'])))
+                    )
+                    ->addItem(new Anchor('Invitation', $this->url->get('/sound'), 'si si-envelope-letter'))
+                    ->addHeading('Challenge', 'Ch')
+                    ->addItem(new Anchor('Kompetisi', $this->url->get('/competition'), 'si si-trophy'));
+                break;
+            case User::ROLE_AMPLIFIER:
+                break;
+            case User::ROLE_ADMIN:
+                $sidebar
+                    ->addHeading('Collaboration', 'Co')
+//                    ->addItem(new Anchor('Sounds', $this->url->get(['for' => 'collaboration-sound-index']), 'si si-volume-2'))
+                    ->addHeading('Challenge', 'Ch')
+                    ->addItem(new Anchor('Kompetisi', $this->url->get('/competition'), 'si si-trophy'));
+                break;
+            default:
+                $sidebar
+                    ->addHeading('Collaboration', 'Co')
+//                    ->addItem(new Anchor('Sounds', $this->url->get(['for' => 'collaboration-sound-index']), 'si si-volume-2'))
+                    ->addHeading('Challenge', 'Ch')
+                    ->addItem(new Anchor('Kompetisi', $this->url->get('/competition'), 'si si-trophy'));
+        }
 
         $this->setSideBar($sidebar);
     }
