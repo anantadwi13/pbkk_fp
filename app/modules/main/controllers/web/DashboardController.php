@@ -14,9 +14,4 @@ class DashboardController extends ModuleController
             'body' => 'This is body'
         ]);
     }
-
-    public function signOutAction(){
-        $this->clearAuth();
-        $this->response->redirect('/signin');
-    }
 }
