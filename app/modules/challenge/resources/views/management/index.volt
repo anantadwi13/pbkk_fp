@@ -4,7 +4,7 @@
             <!-- Main Container -->
             <main id="main-container">
                 <div class="px-30">
-                    {{ flash.output() }}
+                    {{ flashSession.output() }}
                 </div>
                 <!-- Page Content -->
                 <div class="content">
@@ -30,46 +30,189 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {% if competition|length == 0 %}
+                                        <tr>
+                                            <td class="text-center" colspan="4">-</td>
+                                        </tr>
+                                    {% endif %}
+                                    {% for c in competition %}
                                     <tr>
-                                        <td class="text-center">1</td>
-                                        <td class="font-w600">Judy Ford Remix</td>
+                                        <td class="text-center">{{ loop.index }}</td>
+                                        <td class="font-w600">{{ c.title }}</td>
                                         <td class="text-center d-none d-sm-table-cell">
-                                            <span class="badge badge-info">30 Agustus 2020</span>
+                                            {% if getdate >= c.duedate %}
+                                            <span class="badge badge-info">{{ c.duedate }}</span>
+                                            {% else %}
+                                            <span class="badge badge-danger">{{ c.duedate }}</span>
+                                            {% endif %}
                                         </td>
                                         <td class="text-center">
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-look-1" title="Look">
+                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-look-{{ loop.index }}" title="Look">
                                                     <i class="fa fa-search"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-edit-1" title="Edit">
+                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-edit-{{ loop.index }}" title="Edit">
                                                     <i class="fa fa-pencil"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-delete-1" title="Delete">
+                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-delete-{{ loop.index }}" title="Delete">
                                                     <i class="fa fa-times"></i>
                                                 </button>
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="text-center">2</td>
-                                        <td class="font-w600">Lisa Jenkins Orchestra</td>
-                                        <td class="text-center d-none d-sm-table-cell">
-                                            <span class="badge badge-danger">4 Maret 2020</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-look-1" title="Look">
-                                                    <i class="fa fa-search"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-edit-1" title="Edit">
-                                                    <i class="fa fa-pencil"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-delete-1" title="Delete">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
+                <!-- Look Modal -->
+                <div class="modal" id="modal-look-{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="modal-large" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="block block-themed block-transparent mb-0">
+                                <div class="block-header bg-primary-dark">
+                                    <h3 class="block-title">Lihat</h3>
+                                    <div class="block-options">
+                                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                            <i class="si si-close"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="block-content">
+                                    <div class="form-group row">
+                                        <label class="col-12" for="example-text-input">Title</label>
+                                        <div class="col-md-12">
+                                            <div class="form-control-plaintext">{{ c.title }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-12" for="example-textarea-input">Description</label>
+                                        <div class="col-12">
+                                            <div class="form-control-plaintext">{{ c.description }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-12" for="example-text-input">Due Date</label>
+                                        <div class="col-lg-6">
+                                            <div class="form-control-plaintext">{{ c.duedate }}</div>
+                                            <div class="form-text text-muted">Secara default pada 00:00:00</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-12">Image Poster</label>
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-6 animated fadeIn">
+                                            <div class="options-container fx-item-zoom-in fx-overlay-zoom-out">
+                                                <img class="img-fluid options-item" src="{{url("/")}}challenge_competition/{{ c.image }}" alt="">
                                             </div>
-                                        </td>
-                                    </tr>
+                                        </div>
+                                        <div class="col-md-3"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Tutup</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Look Modal -->
+                <!-- Edit Modal -->
+                <div class="modal" id="modal-edit-{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="modal-large" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="block block-themed block-transparent mb-0">
+                                <div class="block-header bg-primary-dark">
+                                    <h3 class="block-title">Edit</h3>
+                                    <div class="block-options">
+                                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                            <i class="si si-close"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="block-content">
+                                    <form method="post">
+                                        <div class="form-group row">
+                                            <label class="col-12" for="example-text-input">Title</label>
+                                            <div class="col-md-12">
+                                                <input type="text" class="form-control" id="title" name="title" value="{{ c.title }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12" for="example-textarea-input">Description</label>
+                                            <div class="col-12">
+                                                <textarea class="form-control" id="description" name="description" rows="6">{{ c.description }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12" for="example-text-input">Due Date</label>
+                                            <div class="col-lg-6">
+                                                <input type="date" class="js-datepicker form-control" id="duedate" name="duedate" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="dd-mm-yyyy" value="{{ c.duedate }}">
+                                                <div class="form-text text-muted">Secara default pada 00:00:00</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12">Image Poster</label>
+                                            <div class="col-md-3"></div>
+                                            <div class="col-md-6 animated fadeIn">
+                                                <div class="options-container fx-item-zoom-in fx-overlay-zoom-out">
+                                                    <img class="img-fluid options-item" src="{{url("/")}}challenge_competition/{{ c.image }}" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3"></div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-6">
+                                                <div class="custom-file">
+                                                    <!-- Populating custom file input label with the selected filename (data-toggle="custom-file-input" is initialized in Helpers.coreBootstrapCustomFileInput()) -->
+                                                    <input type="file" class="custom-file-input" id="image" name="image" data-toggle="custom-file-input">
+                                                    <label class="custom-file-label" for="image">Gambarmu.jpg</label>
+                                                    <div class="form-text text-muted">Poster yang mewakili challenge di dengar.in</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Batal</button>
+                                    <input type="hidden" name="{{ security.getTokenKey() }}" value="{{ security.getToken() }}">
+                                    <input type="hidden" name="id" value="{{ c.idcomp }}">
+                                    <button type="submit" id="edit" name="edit" value="edit" class="btn btn-alt-success">
+                                        <i class="fa fa-check"></i> Simpan
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Edit Modal -->
+                <!-- Delete Modal -->
+                <div class="modal" id="modal-delete-{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="modal-small" aria-hidden="true">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="block block-themed block-transparent mb-0">
+                                <div class="block-header bg-primary-dark">
+                                    <h3 class="block-title">Hapus</h3>
+                                    <div class="block-options">
+                                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                            <i class="si si-close"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="block-content">
+                                    <p>Apakah Anda yakin ingin menghapus challenge ini?</p>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Tidak</button>
+                                <form method="post">
+                                <input type="hidden" name="{{ security.getTokenKey() }}" value="{{ security.getToken() }}">
+                                <input type="hidden" name="id" value="{{ c.idcomp }}">
+                                <button type="submit" id="delete" name="delete" value="delete" class="btn btn-alt-danger">
+                                    <i class="fa fa-check"></i> Iya
+                                </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Delete Modal -->
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>
@@ -78,6 +221,9 @@
 
                 </div>
                 <!-- END Page Content -->
+
+            </main>
+            <!-- END Main Container -->
 
                 <!-- Create Modal -->
                 <div class="modal" id="modal-create" tabindex="-1" role="dialog" aria-labelledby="modal-large" aria-hidden="true">
@@ -109,7 +255,8 @@
                                         <div class="form-group row">
                                             <label class="col-12" for="example-text-input">Due Date</label>
                                             <div class="col-lg-6">
-                                                <input type="text" class="js-datepicker form-control" id="duedate" name="duedate" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="dd-mm-yyyy" placeholder="dd-mm-yyyy">
+                                                <input type="date" class="js-datepicker form-control" id="duedate" name="duedate" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="dd-mm-yyyy" placeholder="dd-mm-yyyy">
+                                                <div class="form-text text-muted">Secara default pada 00:00:00</div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -118,7 +265,7 @@
                                                 <div class="custom-file">
                                                     <!-- Populating custom file input label with the selected filename (data-toggle="custom-file-input" is initialized in Helpers.coreBootstrapCustomFileInput()) -->
                                                     <input type="file" class="custom-file-input" id="image" name="image" data-toggle="custom-file-input">
-                                                    <label class="custom-file-label" for="example-file-input-custom">Pilih gambar poster 4:3</label>
+                                                    <label class="custom-file-label" for="image">Pilih gambar poster 4:3</label>
                                                     <div class="form-text text-muted">Poster yang mewakili challenge di dengar.in</div>
                                                 </div>
                                             </div>
@@ -129,7 +276,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Batal</button>
                                 {#<form method="post">#}
-                                    <button type="submit" class="btn btn-alt-success">
+                                    <button type="submit" id="create" name="create" value="create" class="btn btn-alt-success">
                                         <i class="fa fa-check"></i> Buat
                                     </button>
                                 </form>
@@ -138,147 +285,6 @@
                     </div>
                 </div>
                 <!-- END Create Modal -->
-
-                <!-- Look Modal -->
-                <div class="modal" id="modal-look-1" tabindex="-1" role="dialog" aria-labelledby="modal-large" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="block block-themed block-transparent mb-0">
-                                <div class="block-header bg-primary-dark">
-                                    <h3 class="block-title">Lihat</h3>
-                                    <div class="block-options">
-                                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                                            <i class="si si-close"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="block-content">
-                                    <div class="form-group row">
-                                        <label class="col-12" for="example-text-input">Title</label>
-                                        <div class="col-md-12">
-                                            <div class="form-control-plaintext">Judul Challenge</div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-12" for="example-textarea-input">Description</label>
-                                        <div class="col-12">
-                                            <div class="form-control-plaintext">Deskripsi Challenge</div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-12" for="example-text-input">Due Date</label>
-                                        <div class="col-lg-6">
-                                            <div class="form-control-plaintext">dd-mm-yyyy</div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-12">Image Poster</label>
-                                        <div class="col-md-3"></div>
-                                        <div class="col-md-6 animated fadeIn">
-                                            <div class="options-container fx-item-zoom-in fx-overlay-zoom-out">
-                                                <img class="img-fluid options-item" src="assets/media/photos/photo10@2x.jpg" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Tutup</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- END Look Modal -->
-                <!-- Edit Modal -->
-                <div class="modal" id="modal-edit-1" tabindex="-1" role="dialog" aria-labelledby="modal-large" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="block block-themed block-transparent mb-0">
-                                <div class="block-header bg-primary-dark">
-                                    <h3 class="block-title">Edit</h3>
-                                    <div class="block-options">
-                                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                                            <i class="si si-close"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="block-content">
-                                    <form action="be_forms_elements_bootstrap.html" method="post" enctype="multipart/form-data" onsubmit="return false;">
-                                        <div class="form-group row">
-                                            <label class="col-12" for="example-text-input">Title</label>
-                                            <div class="col-md-12">
-                                                <input type="text" class="form-control" id="example-text-input" name="example-text-input" value="Judul Challenge">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-12" for="example-textarea-input">Description</label>
-                                            <div class="col-12">
-                                                <textarea class="form-control" id="example-textarea-input" name="example-textarea-input" rows="6">Deskripsi Challenge</textarea>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-12" for="example-text-input">Due Date</label>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="js-datepicker form-control" id="example-datepicker3" name="example-datepicker3" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="dd-mm-yyyy" value="dd-mm-yyyy">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-12">Image Poster</label>
-                                            <div class="col-6">
-                                                <div class="custom-file">
-                                                    <!-- Populating custom file input label with the selected filename (data-toggle="custom-file-input" is initialized in Helpers.coreBootstrapCustomFileInput()) -->
-                                                    <input type="file" class="custom-file-input" id="example-file-input-custom" name="example-file-input-custom" data-toggle="custom-file-input" value="abc.jpg">
-                                                    <label class="custom-file-label" for="example-file-input-custom">gambar.jpg</label>
-                                                    <div class="form-text text-muted">Poster yang mewakili challenge di dengar.in</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Batal</button>
-                                <form method="post">
-                                    <button type="submit" class="btn btn-alt-success" data-dismiss="modal">
-                                        <i class="fa fa-check"></i> Buat
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- END Edit Modal -->
-                <!-- Delete Modal -->
-                <div class="modal" id="modal-delete-1" tabindex="-1" role="dialog" aria-labelledby="modal-small" aria-hidden="true">
-                    <div class="modal-dialog modal-sm" role="document">
-                        <div class="modal-content">
-                            <div class="block block-themed block-transparent mb-0">
-                                <div class="block-header bg-primary-dark">
-                                    <h3 class="block-title">Hapus</h3>
-                                    <div class="block-options">
-                                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                                            <i class="si si-close"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="block-content">
-                                    <p>Apakah Anda yakin ingin menghapus challenge ini?</p>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Tidak</button>
-                                <button type="button" class="btn btn-alt-danger" data-dismiss="modal">
-                                    <i class="fa fa-check"></i> Iya
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- END Delete Modal -->
-
-            </main>
-            <!-- END Main Container -->
 
         <!-- Page JS Plugins -->
         <script src="{{ url('/') }}assets/js/core/jquery.min.js"></script>
