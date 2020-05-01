@@ -113,4 +113,9 @@ class AuthController extends ModuleController
             }
         }
     }
+
+    public function signOutAction(){
+        $this->clearAuth();
+        $this->response->redirect('/signin');
+    }
 }
