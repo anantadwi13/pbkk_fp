@@ -26,4 +26,7 @@ class MediaController extends ModuleController
 
         $this->view->user = $user;
     }
+    public function searchAction(){
+        
+    }
 }

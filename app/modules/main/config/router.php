@@ -67,6 +67,13 @@ $router->add('/dashboard',array(
     'action' => 'index',
 ))->setName('main-dashboard-index');
 
+$router->add('/users',array(
+    'namespace' => $webNamespace,
+    'module' => $moduleName,
+    'controller' => 'media',
+    'action' => 'search',
+))->setName('main-media-search');
+
 // admin
 
 $router->add('/dashboard/user',array(

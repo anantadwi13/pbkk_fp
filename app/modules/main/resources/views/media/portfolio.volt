@@ -8,7 +8,7 @@
                         <div class="content content-full text-center">
                             <!-- Avatar -->
                             <div class="mb-15">
-                                <img class="img-avatar img-avatar96 img-avatar-thumb" src="{{ url('/') }}assets/media/avatars/avatar15.jpg" alt="">
+                                <i class="fa fa-music fa-4x text-warning-light"></i>
                             </div>
                             <!-- END Avatar -->
 
