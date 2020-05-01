@@ -47,7 +47,7 @@ $router->add('/manage_competition',array(
     'module' => $moduleName,
     'controller' => 'management',
     'action' => 'index',
-))->setName('manage_competition');
+))->setName('challenge-manage-competition');
 
 $router->add('/manage_competition/:int',array(
     'namespace' => $webNamespace,
@@ -55,4 +55,4 @@ $router->add('/manage_competition/:int',array(
     'controller' => 'management',
     'action' => 'show',
     'id' => 1,
-))->setName('manage_submission');
+))->setName('challenge-manage-submission');

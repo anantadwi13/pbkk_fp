@@ -45,11 +45,10 @@ class User extends Model
             'reusable' => true,
             'alias' => 'data'
         ]);
-        $this->hasMany(
-            'id',
-            Submission::class,
-            'id'
-        );
+        $this->hasMany('id', Submission::class, 'id',[
+            'reusable' => true,
+            'alias' => 'submission_from_user'
+        ]);
 
         $this->hasMany('id', Friend::class, 'following_user_id', [
             'reusable' => true,

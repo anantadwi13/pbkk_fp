@@ -24,10 +24,10 @@ class Competition extends Model
     public function initialize()
     {
         $this->setSource('competition');
-        $this->hasMany(
-            'idcomp',
-            Submission::class,
-            'idcomp'
+        $this->hasMany('idcomp', Submission::class, 'idcomp', [
+            'reusable' => true,
+            'alias' => 'competition_to_submit'
+        ]
         );
     }
 
