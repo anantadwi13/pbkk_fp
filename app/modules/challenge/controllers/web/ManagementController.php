@@ -105,7 +105,7 @@ class ManagementController extends ModuleController
                         // $competition->duedate = $date;
                     }
                     $competition->assign($this->request->getPost(),['title', 'description', 'duedate']);
-                    if ($competition->save()){
+                    if ($competition->update()){
                         $this->flashSession->success('Challenge has been edited succesfully');
                         $this->response->redirect(['for' => 'challenge-manage-competition']);
                     } else {
