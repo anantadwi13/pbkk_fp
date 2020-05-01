@@ -36,4 +36,4 @@ Final Project PBKK
 | 13. | User Amplifier dapat melihat jadwal kosong user Sound | <ul><li>[x] </li></ul>
 | 14. | User Amplifier dapat membuat jadwal collab dengan user Sound | <ul><li>[x] </li></ul>
 | 15. | User Sound dapat menanggapi (menerima/menolak) jadwal collab dari user Amplifier | <ul><li>[x] </li></ul>
-| 16. | User (Sound dan Amplifier) dapat memberikan rating ke user (Sound dan Amplifier) lain setelah melakukan collab | <ul><li>[ ] </li></ul>
+| 16. | User (Sound dan Amplifier) dapat memberikan rating ke user (Sound dan Amplifier) lain setelah melakukan collab | <ul><li>[x] </li></ul>

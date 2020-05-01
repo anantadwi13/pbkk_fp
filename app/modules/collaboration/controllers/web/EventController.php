@@ -307,4 +307,58 @@ class EventController extends ModuleController
 
         $this->response->redirect($this->url->get(['for' => 'collaboration-event-invitation']));
     }
+
+    public function ratingAction($id){
+        if (!$this->request->isPost() || !$this->security->checkToken()){
+            $this->response->redirect($this->request->getHTTPReferer());
+            return;
+        }
+
+        /** @var Event $event */
+        $event = Event::findFirst($id);
+        $rating = $this->request->getPost('rating');
+
+        if ($rating > 5 || $rating <= 0){
+            $this->flashSession->error('Invalid rating!');
+            $this->response->redirect($this->request->getHTTPReferer());
+            return;
+        }
+        elseif (!$event || ($event->sound_user_id != $this->auth->id && $event->amplifier_user_id != $this->auth->id) ||
+            $event->isStatus(Event::STATUS_DELETED)){
+            $this->redirectNotFound();
+            return;
+        } elseif (!$event->isStatus(Event::STATUS_FOLLOWED_UP) || !$event->isStatus(Event::STATUS_ACCEPTED)){
+            $this->flashSession->error('Event not accepted!');
+            $this->response->redirect($this->request->getHTTPReferer());
+            return;
+        } elseif (new DateTime($event->time_end) >= new DateTime('now')){
+            $this->flashSession->error('Event not finished yet!');
+            $this->response->redirect($this->request->getHTTPReferer());
+            return;
+        } elseif ($event->amplifier_user_id == null){
+            $this->flashSession->error("No need rating custom event!");
+            $this->response->redirect($this->request->getHTTPReferer());
+            return;
+        } else {
+            switch ($this->auth->role){
+                case User::ROLE_SOUND:
+                    $event->rating_amplifier = $rating;
+                    break;
+                case User::ROLE_AMPLIFIER:
+                    $event->rating_sound = $rating;
+                    break;
+            }
+
+            if ($event->update()){
+                $this->flashSession->success('Success!');
+                $this->response->redirect($this->request->getHTTPReferer());
+                return;
+            }
+
+            foreach ($event->getMessages() as $message)
+                $this->flashSession->error($message->getMessage());
+            $this->response->redirect($this->request->getHTTPReferer());
+            return;
+        }
+    }
 }

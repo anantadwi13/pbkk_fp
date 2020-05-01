@@ -37,6 +37,7 @@ class BaseModuleController extends AppController
             case User::ROLE_SOUND:
                 $sidebar
                     ->addItem(new Anchor('Dashboard', $this->url->get(['for' => 'main-dashboard-index']), 'si si-cup'))
+                    ->addItem(new Anchor('Find Users', $this->url->get(['for' => 'main-media-search']), 'si si-users'))
                     ->addHeading('Collaboration', 'Co')
                     ->addItem(
                         (new SubMenu('Events', 'si si-calendar'))
@@ -48,23 +49,21 @@ class BaseModuleController extends AppController
             case User::ROLE_AMPLIFIER:
                 $sidebar
                     ->addItem(new Anchor('Dashboard', $this->url->get(['for' => 'main-dashboard-index']), 'si si-cup'))
+                    ->addItem(new Anchor('Find Users', $this->url->get(['for' => 'main-media-search']), 'si si-users'))
                     ->addHeading('Collaboration', 'Co')
                     ->addItem(
                         (new SubMenu('Events', 'si si-calendar'))
                             ->addItem(new Anchor('Manage Event', $this->url->get(['for' => 'collaboration-event-index'])))
-                    )
-                    ->addItem(new Anchor('Find Users', $this->url->get(['for' => 'main-media-search']), 'si si-users'));
+                    );
                 break;
             case User::ROLE_ADMIN:
                 $sidebar
                     ->addItem(new Anchor('Dashboard', $this->url->get(['for' => 'main-dashboard-index']), 'si si-cup'))
-                    ->addHeading('Collaboration', 'Co')
                     ->addItem(new Anchor('Find Users', $this->url->get(['for' => 'main-media-search']), 'si si-users'));
                 break;
             default:
                 $sidebar
                     ->addItem(new Anchor('Home', $this->url->get('/'), 'si si-home'))
-                    ->addHeading('Collaboration', 'Co')
                     ->addItem(new Anchor('Find Users', $this->url->get(['for' => 'main-media-search']), 'si si-users'));
         }
 

@@ -30,6 +30,8 @@ create table events
     time_start        datetime      not null,
     time_end          datetime      not null,
     location          text,
+    rating_sound      smallint,
+    rating_amplifier  smallint,
     status            int default 0 not null,
     created_at        datetime,
     updated_at        datetime

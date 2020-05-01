@@ -52,6 +52,13 @@ $router->add('/collaboration/event/{id}/followup', [
     'action' => 'followUp',
 ])->setName('collaboration-event-followup');
 
+$router->add('/collaboration/event/{id}/rating', [
+    'namespace' => $webNamespace,
+    'module' => $moduleName,
+    'controller' => 'event',
+    'action' => 'rating',
+])->setName('collaboration-event-rating');
+
 $router->add('/collaboration/event/add', [
     'namespace' => $webNamespace,
     'module' => $moduleName,

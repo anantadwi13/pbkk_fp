@@ -38,7 +38,8 @@ class Event extends Model
     public $time_start;
     public $time_end;
     public $location;
-    private $status;
+    public $rating_amplifier;
+    public $rating_sound;
 
     public function initialize()
     {
@@ -89,6 +90,8 @@ class Event extends Model
                     return $dateTimeEnd->format('Y-m-d');
                 case 'end_time':
                     return $dateTimeEnd->format('H:i');
+                case 'finished':
+                    return $dateTimeEnd < new DateTime('now');
             }
         } catch (Exception $e){
             return null;

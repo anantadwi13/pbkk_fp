@@ -191,6 +191,32 @@
                                                             <div class="form-group row">
                                                                 <div class="col-md-12">
                                                                     <div class="form-material">
+                                                                        <label>Rating By Sound</label>
+                                                                        {% if event.rating_amplifier is empty %}
+                                                                            -
+                                                                        {% else %}
+                                                                        <div class="js-rating" data-score="{{ event.rating_amplifier }}" data-star-on="fa fa-fw fa-2x fa-star text-warning"
+                                                                             data-readonly="true" data-star-off="fa fa-fw fa-2x fa-star text-muted"></div>
+                                                                        {% endif %}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-material">
+                                                                        <label>Rating By Amplifier</label>
+                                                                        {% if event.rating_sound is empty %}
+                                                                            -
+                                                                        {% else %}
+                                                                        <div class="js-rating" data-score="{{ event.rating_sound }}" data-star-on="fa fa-fw fa-2x fa-star text-warning"
+                                                                             data-readonly="true" data-star-off="fa fa-fw fa-2x fa-star text-muted"></div>
+                                                                        {% endif %}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-material">
                                                                         <label>Created At</label>
                                                                         <span class="form-control">
                                                                             {{ event.getReadableCreatedAt() }}
@@ -222,6 +248,57 @@
                                                 <i class="fa fa-info"></i>
                                             </button>
                                         </a>
+
+                                        {% if event.finished and
+                                            ((auth.role == constant('Dengarin\Main\Models\User::ROLE_SOUND') and event.rating_amplifier is empty) or
+                                            (auth.role == constant('Dengarin\Main\Models\User::ROLE_AMPLIFIER') and event.rating_sound is empty)) %}
+                                        <div class="modal fade text-left" id="modal-rating-{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="modal-popout" style="display: none;" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-popout" role="document">
+                                                <div class="modal-content">
+                                                    <form action="{{ url({'for': 'collaboration-event-rating', 'id': event.id}) }}" method="post">
+                                                        <input hidden name="{{ security.getTokenKey() }}" value="{{ security.getToken() }}">
+                                                        <div class="block block-themed block-transparent mb-0">
+                                                            <div class="block-header bg-primary-dark">
+                                                                <h3 class="block-title">Rating Event!</h3>
+                                                                <div class="block-options">
+                                                                    <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                                                        <i class="si si-close"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="block-content">
+                                                                <!-- Sizes Variations -->
+                                                                <div class="block">
+                                                                    <div class="block-content">
+                                                                        <div class="row items-push-2x text-center text-xl-left">
+                                                                            <div class="col-xl-8 offset-xl-2 text-center">
+                                                                                <!-- Rating Container -->
+                                                                                <div id="{{ event.id }}" class="js-rating" data-score="0" data-star-on="fa fa-fw fa-2x fa-star text-warning" data-star-off="fa fa-fw fa-2x fa-star text-muted"></div>
+                                                                                <input id="rating-{{ event.id }}" hidden name="rating" value="">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- END Sizes Variations -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-alt-success">Submit</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a href="#"  data-toggle="modal" data-target="#modal-rating-{{ loop.index }}">
+                                            <button type="button" class="btn btn-sm btn-warning"  data-toggle="tooltip" title="Rating Now">
+                                                <i class="fa fa-star"></i>
+                                            </button>
+                                        </a>
+                                        {% endif %}
+
+
+
                                         {% if not event.isStatus(constant('Dengarin\Collaboration\Models\Event::STATUS_DELETED')) and (
                                             (auth.role == constant('Dengarin\Main\Models\User::ROLE_SOUND') and event.amplifier_user_id is not defined) or
                                             (auth.role == constant('Dengarin\Main\Models\User::ROLE_AMPLIFIER') and not event.isStatus(constant('Dengarin\Collaboration\Models\Event::STATUS_FOLLOWED_UP')))
