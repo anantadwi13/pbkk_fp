@@ -20,6 +20,7 @@ class Module implements ModuleDefinitionInterface
             __NAMESPACE__ . '\Controllers\Api' => __DIR__ . '/controllers/api',
             __NAMESPACE__ . '\Controllers\Web' => __DIR__ . '/controllers/web',
             __NAMESPACE__ . '\Models' => __DIR__ . '/models',
+            __NAMESPACE__ . '\Validation' => __DIR__ . '/validation',
         ]);
 
         $loader->register();

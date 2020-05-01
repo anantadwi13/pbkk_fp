@@ -42,13 +42,21 @@ class BaseModuleController extends AppController
                     ->addItem(
                         (new SubMenu('Events', 'si si-calendar'))
                             ->addItem(new Anchor('Manage Event', $this->url->get(['for' => 'collaboration-event-index'])))
+                            ->addItem(new Anchor('Invitation', $this->url->get(['for' => 'collaboration-event-invitation'])))
 //                            ->addItem(new Anchor('Calendar', $this->url->get(['for' => 'collaboration-event-index-2', 'controller'=>'aaa'])))
                     )
-                    ->addItem(new Anchor('Invitation', $this->url->get('/sound'), 'si si-envelope-letter'))
                     ->addHeading('Challenge', 'Ch')
                     ->addItem(new Anchor('Kompetisi', $this->url->get('/competition'), 'si si-trophy'));
                 break;
             case User::ROLE_AMPLIFIER:
+                $sidebar
+                    ->addHeading('Collaboration', 'Co')
+                    ->addItem(
+                        (new SubMenu('Events', 'si si-calendar'))
+                            ->addItem(new Anchor('Manage Event', $this->url->get(['for' => 'collaboration-event-index'])))
+                    )
+                    ->addHeading('Challenge', 'Ch')
+                    ->addItem(new Anchor('Kompetisi', $this->url->get('/competition'), 'si si-trophy'));
                 break;
             case User::ROLE_ADMIN:
                 $sidebar

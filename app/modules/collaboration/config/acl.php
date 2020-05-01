@@ -1,5 +1,6 @@
 <?php
 
+use Dengarin\Collaboration\Controllers\Web\EventController;
 use Dengarin\Main\Models\User;
 use Phalcon\Acl\Adapter\Memory;
 use Phalcon\Acl\Enum;
@@ -17,7 +18,7 @@ $acl->setDefaultAction(Enum::ALLOW);
  * Register Component (controller and action)
  */
 $components = [
-//    [IndexController::class, ['index']],
+    [EventController::class, ['index', 'invitation', 'create', 'update', 'delete', 'followUp']],
 ];
 
 foreach ($components as $component) {
@@ -33,7 +34,8 @@ foreach ($components as $component) {
  * Defining Access Controls
  */
 $accesses = [
-//    [Enum::DENY, User::ROLE_GUEST, DashboardController::class, ['index']],
+    [Enum::DENY, User::ROLE_GUEST, EventController::class, ['index', 'invitation', 'create', 'update', 'delete', 'followUp']],
+    [Enum::DENY, User::ROLE_AMPLIFIER, EventController::class, ['invitation', 'create']],
 ];
 
 foreach ($accesses as $access){

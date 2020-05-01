@@ -6,19 +6,12 @@
                 <div class="content">
                     {{ flashSession.output() }}
 
-                    <h2 class="content-heading">Manage Your Events</h2>
+                    <h2 class="content-heading">Invitation</h2>
 
                     <!-- Dynamic Table Full -->
                     <div class="block">
                         <div class="block-header block-header-default">
                             <h3 class="block-title">Events</h3>
-                            <h3 class="block-title text-right">
-                                {% if auth.role == constant('Dengarin\Main\Models\User::ROLE_SOUND') %}
-                                    <a href="{{ url({'for':'collaboration-event-create'}) }}" class="btn btn-sm btn-outline-primary">
-                                        Add New Event
-                                    </a>
-                                {% endif %}
-                            </h3>
                         </div>
                         <div class="block-content block-content-full">
                             <!-- DataTables functionality is initialized with .js-dataTable-full class in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
@@ -41,16 +34,10 @@
                                     <td class="text-center">{{ loop.index }}</td>
                                     <td class="font-w600">{{ event.name }}</td>
                                     <td class="d-none d-sm-table-cell">
-                                        {% if auth.role == constant('Dengarin\Main\Models\User::ROLE_AMPLIFIER') %}
-                                            <a href="{{ url({'for':'collaboration-sound-profile', 'username': event.sound.username}) }}" target="_blank">
-                                                {{ event.sound.name }}
+                                        {% if event.amplifier is not empty %}
+                                            <a href="{{ url({'for':'collaboration-sound-profile', 'username': event.amplifier.username}) }}" target="_blank">
+                                                {{ event.amplifier.name }}
                                             </a>
-                                        {% elseif auth.role == constant('Dengarin\Main\Models\User::ROLE_SOUND') %}
-                                            {% if event.amplifier is not empty %}
-                                                <a href="{{ url({'for':'collaboration-sound-profile', 'username': event.amplifier.username}) }}" target="_blank">
-                                                    {{ event.amplifier.name }}
-                                                </a>
-                                            {% endif %}
                                         {% endif %}
                                     </td>
                                     <td class="d-none d-sm-table-cell">{{ event.getReadableTimeStart() }}</td>
@@ -95,7 +82,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            {% if auth.role == constant('Dengarin\Main\Models\User::ROLE_SOUND') and event.amplifier is not empty %}
+                                                            {% if event.amplifier is not empty %}
                                                             <div class="form-group row">
                                                                 <div class="col-md-12">
                                                                     <div class="form-material">
@@ -105,19 +92,6 @@
                                                                                 {{ event.amplifier.name }}
                                                                             </a>
                                                                         </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            {% elseif auth.role == constant('Dengarin\Main\Models\User::ROLE_AMPLIFIER') %}
-                                                            <div class="form-group row">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-material">
-                                                                        <label>Sound Name</label>
-                                                                        <span class="form-control">
-                                                                        <a href="{{ url({'for':'collaboration-sound-profile', 'username': event.sound.username}) }}" target="_blank">
-                                                                            {{ event.sound.name }}
-                                                                        </a>
-                                                                    </span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -218,25 +192,17 @@
                                                 <i class="fa fa-info"></i>
                                             </button>
                                         </a>
-                                        {% if not event.isStatus(constant('Dengarin\Collaboration\Models\Event::STATUS_DELETED')) and (
-                                            (auth.role == constant('Dengarin\Main\Models\User::ROLE_SOUND') and event.amplifier_user_id is not defined) or
-                                            (auth.role == constant('Dengarin\Main\Models\User::ROLE_AMPLIFIER') and not event.isStatus(constant('Dengarin\Collaboration\Models\Event::STATUS_FOLLOWED_UP')))
-                                            ) %}
-                                        <a href="{{ url({'for': 'collaboration-event-update', 'id': event.id}) }}" type="button" class="btn btn-sm btn-warning"  data-toggle="tooltip" title="Edit">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        {% endif %}
-
-                                        {% if not event.isStatus(constant('Dengarin\Collaboration\Models\Event::STATUS_DELETED')) and
-                                            not event.isStatus(constant('Dengarin\Collaboration\Models\Event::STATUS_FOLLOWED_UP')) %}
-                                        <form action="{{ url({'for':'collaboration-event-delete', 'id': event.id}) }}"
-                                              method="post" style="display: inline-block" onsubmit="return confirm('Do you really want to delete this event?');">
+                                        <form action="{{ url({'for':'collaboration-event-followup', 'id': event.id}) }}"
+                                              method="post" style="display: inline-block" onsubmit="return confirm('Do you really want to do this action?');">
                                             <input hidden name="{{ security.getTokenKey() }}" value="{{ security.getToken() }}">
-                                            <button type="submit" class="btn btn-sm btn-danger" data-toggle="tooltip" title="Delete">
+                                            <input hidden name="id" value="{{ event.id }}">
+                                            <button type="submit" class="btn btn-sm btn-success"  data-toggle="tooltip" title="Accept" name="status" value="1">
+                                                <i class="fa fa-check"></i>
+                                            </button>
+                                            <button type="submit" class="btn btn-sm btn-danger" data-toggle="tooltip" title="Reject" name="status" value="0">
                                                 <i class="fa fa-remove"></i>
                                             </button>
                                         </form>
-                                        {% endif %}
                                     </td>
                                 </tr>
                                 {% endfor %}

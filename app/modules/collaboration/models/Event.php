@@ -26,9 +26,8 @@ class Event extends Model
 
     const STATUS_DELETED = 1;
     const STATUS_READ = 2;
-    const STATUS_REJECTED = 4;
-    const STATUS_ACCEPTED = 8;
-    const STATUS_CUSTOM = 16;
+    const STATUS_FOLLOWED_UP = 4;
+    const STATUS_ACCEPTED = 8;      // status == rejected if the event has been followed up
 
 
     public $id;
@@ -60,7 +59,7 @@ class Event extends Model
     {
         try {
             $date = new DateTime($this->time_start);
-            return $date->format('D, d M Y H:i:s');
+            return $date->format('D, d M Y H:i');
         } catch (Exception $e) {
             return null;
         }
@@ -69,10 +68,32 @@ class Event extends Model
     public function getReadableTimeEnd()
     {
         try {
-            $date = new DateTime($this->time_start);
-            return $date->format('D, d M Y H:i:s');
+            $date = new DateTime($this->time_end);
+            return $date->format('D, d M Y H:i');
         } catch (Exception $e) {
             return null;
         }
+    }
+
+    public function __get(string $property)
+    {
+        try {
+            $dateTimeStart = new DateTime($this->time_start);
+            $dateTimeEnd = new DateTime($this->time_end);
+            switch ($property) {
+                case 'start_date':
+                    return $dateTimeStart->format('Y-m-d');
+                case 'start_time':
+                    return $dateTimeStart->format('H:i');
+                case 'end_date':
+                    return $dateTimeEnd->format('Y-m-d');
+                case 'end_time':
+                    return $dateTimeEnd->format('H:i');
+            }
+        } catch (Exception $e){
+            return null;
+        }
+
+        return parent::__get($property);
     }
 }

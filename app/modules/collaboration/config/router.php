@@ -24,13 +24,26 @@ $apiNamespace = $module['namespace']['apiController'];
  *
  */
 
-$router->add('/collaboration/event/:params', [
+$router->add('/collaboration/event', [
     'namespace' => $webNamespace,
     'module' => $moduleName,
     'controller' => 'event',
     'action' => 'index',
-    'params' => 1,
 ])->setName('collaboration-event-index');
+
+$router->add('/collaboration/event/invitation', [
+    'namespace' => $webNamespace,
+    'module' => $moduleName,
+    'controller' => 'event',
+    'action' => 'invitation',
+])->setName('collaboration-event-invitation');
+
+$router->add('/collaboration/event/{id}/followup', [
+    'namespace' => $webNamespace,
+    'module' => $moduleName,
+    'controller' => 'event',
+    'action' => 'followUp',
+])->setName('collaboration-event-followup');
 
 $router->add('/collaboration/event/add', [
     'namespace' => $webNamespace,
@@ -38,6 +51,13 @@ $router->add('/collaboration/event/add', [
     'controller' => 'event',
     'action' => 'create',
 ])->setName('collaboration-event-create');
+
+$router->add('/collaboration/event/{id}/edit', [
+    'namespace' => $webNamespace,
+    'module' => $moduleName,
+    'controller' => 'event',
+    'action' => 'update',
+])->setName('collaboration-event-update');
 
 $router->add('/collaboration/event/{id}/delete', [
     'namespace' => $webNamespace,
