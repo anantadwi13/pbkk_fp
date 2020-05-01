@@ -39,12 +39,26 @@ $router->add('/signup',array(
     'action' => 'signUp',
 ))->setName('signup');
 
-$router->add('/portfolio',array(
+$router->add('/u/{username}',array(
     'namespace' => $webNamespace,
     'module' => $moduleName,
     'controller' => 'media',
     'action' => 'portfolio',
 ));
+
+$router->add('/u/{username}/follow',array(
+    'namespace' => $webNamespace,
+    'module' => $moduleName,
+    'controller' => 'user',
+    'action' => 'follow',
+))->setName('main-user-follow');
+
+$router->add('/u/{username}/unfollow',array(
+    'namespace' => $webNamespace,
+    'module' => $moduleName,
+    'controller' => 'user',
+    'action' => 'unfollow',
+))->setName('main-user-unfollow');
 
 $router->add('/dashboard',array(
     'namespace' => $webNamespace,
