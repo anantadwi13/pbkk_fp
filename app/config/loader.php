@@ -21,4 +21,8 @@ $loader->registerNamespaces([
     'Dengarin\Main\Models' => APP_PATH . '/modules/main/models',
 ]);
 
+$loader->registerClasses([
+    'Dengarin\Challenge\Models\Submission' => APP_PATH . '/modules/challenge/models/Submission.php',
+]);
+
 $loader->register();
