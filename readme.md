@@ -20,7 +20,7 @@ From [this](https://github.com/anantadwi13/phalcon_boilerplate)
 | 1. | User (Admin, Sound, Amplifier) dapat login ke aplikasi | <ul><li>[x] </li></ul>
 | 2. | User (Admin, Sound, Amplifier) dapat logout dari aplikasi | <ul><li>[ ] </li></ul>
 | 3. | User (Sound dan Amplifier) dapat register ke aplikasi | <ul><li>[ ] </li></ul>
-| 4. | User Admin dapat melakukan verifikasi user Sound dan Amplifier | <ul><i>[ ]  </li></ul>
+| 4. | User Admin dapat melakukan verifikasi user Sound dan Amplifier | <ul><i>[ ] </li></ul>
 | 5. | User (Admin, Sound, Amplifier) dapat mencari user (Sound dan Amplifier) lain | <ul><li>[ ] </li></ul>
 | 6. | User (Admin, Sound, Amplifier) dapat melihat portofolio (profil) user (Sound dan Amplifier) lain | <ul><li>[ ] </li></ul>
 | 7. | User (Sound dan Amplifier) dapat menambahkan user (Sound dan Amplifier) lain | <ul><li>[ ] </li></ul>
@@ -33,7 +33,7 @@ From [this](https://github.com/anantadwi13/phalcon_boilerplate)
 | 11. | User Sound dapat menghapus acara pada jadwal miliknya | <ul><li>[ ] </li></ul>
 | 12. | User Sound dapat mengedit acara pada jadwal miliknya | <ul><li>[ ] </li></ul>
 | 13. | User Amplifier dapat melihat jadwal kosong user Sound | <ul><li>[ ] </li></ul>
-| 14. | User Amplifier dapat membuat jadwal collab dengan user Sound | <ul><i>  </li></ul>[ ]
+| 14. | User Amplifier dapat membuat jadwal collab dengan user Sound | <ul><i>[ ] </li></ul>
 | 15. | User Sound dapat menanggapi (menerima/menolak) jadwal collab dari user Amplifier | <ul><li>[ ] </li></ul>
 | 16. | User (Sound dan Amplifier) dapat memberikan rating ke user (Sound dan Amplifier) lain setelah melakukan collab | <ul><li>[ ] </li></ul>
 ### Rangga K D
