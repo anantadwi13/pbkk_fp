@@ -12,14 +12,15 @@ class MediaController extends ModuleController
         /** @var User $user */
         $user = User::findFirstByUsername($username);
 
-        $this->view->followed = $this->auth->getRelated('following', [
-                'conditions' => 'following_user_id = :following:',
-                'bind' => [
-                    'following' => $user->id,
-                ]
-            ])->count() > 0;
+        if ($this->isAuthenticated())
+            $this->view->followed = $this->auth->getRelated('following', [
+                    'conditions' => 'following_user_id = :following:',
+                    'bind' => [
+                        'following' => $user->id,
+                    ]
+                ])->count() > 0;
 
-        if (!$user) {
+        if (!$user || $user->role == User::ROLE_ADMIN) {
             $this->redirectNotFound();
             return;
         }
