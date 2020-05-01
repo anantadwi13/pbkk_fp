@@ -4,10 +4,15 @@
                 <!-- Page Content -->
                 <div class="content">
                     <!-- Search -->
-                    <form class="push" action="{{url({'for':'main-media-search'})}}" method="post">
+                    <form class="push" action="{{url({'for':'main-media-search'})}}" method="get">
                         <div class="input-group input-group-lg">
-                            <input type="text" class="form-control" placeholder="Search users here">
+                            <input type="text" class="form-control" name="search" placeholder="Search users here" value="{{ request.get('search') }}">
                             <div class="input-group-append">
+                                {% if request.get('search') is not empty %}
+                                <a href="{{ url({'for': 'main-media-search'}) }}" class="btn btn-secondary" name="search" value="">
+                                    <i class="fa fa-remove"></i>
+                                </a>
+                                {% endif %}
                                 <button type="submit" class="btn btn-secondary">
                                     <i class="fa fa-search"></i>
                                 </button>
@@ -21,70 +26,40 @@
                         <!-- Page Content -->
                         <div class="content">
                             <!-- Simple User Widgets -->
-                            <h2 class="content-heading">Results</h2>
+                            <h2 class="content-heading">Dengar.in</h2>
                             <div class="row">
-                                <!-- Row #3 -->
-                                <div class="col-md-6 col-xl-3">
-                                    <a class="block text-center" href="javascript:void(0)">
-                                        <div class="block-content block-content-full bg-gd-sun">
-                                            <i class="fa fa-music fa-4x text-warning-light"></i>
-                                        </div>
-                                        <div class="block-content block-content-full">
-                                            <div class="font-w600 mb-5">Name</div>
-                                            <div class="font-size-sm text-muted">username</div>
-                                        </div>
-                                        <div class="block-content block-content-full block-content-sm bg-body-light">
-                                            <span class="font-w600 font-size-sm text-danger">Admin</span>
-                                            {# warna text-danger  bg-gd-sun #}
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-6 col-xl-3">
-                                    <a class="block text-center" href="javascript:void(0)">
-                                        <div class="block-content block-content-full bg-gd-leaf">
-                                            <i class="fa fa-music fa-4x text-warning-light"></i>
-                                        </div>
-                                        <div class="block-content block-content-full">
-                                            <div class="font-w600 mb-5">Name</div>
-                                            <div class="font-size-sm text-muted">username</div>
-                                        </div>
-                                        <div class="block-content block-content-full block-content-sm bg-body-light">
-                                            <span class="font-w600 font-size-sm text-success">Sound</span>
-                                            {# warna text-success  bg-gd-leaf #}
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-6 col-xl-3">
-                                    <a class="block text-center" href="javascript:void(0)">
-                                        <div class="block-content block-content-full bg-gd-emerald">
-                                            <i class="fa fa-music fa-4x text-warning-light"></i>
-                                        </div>
-                                        <div class="block-content block-content-full">
-                                            <div class="font-w600 mb-5">Name</div>
-                                            <div class="font-size-sm text-muted">username</div>
-                                        </div>
-                                        <div class="block-content block-content-full block-content-sm bg-body-light">
-                                            <span class="font-w600 font-size-sm text-corporate">Amplifier</span>
-                                            {# warna text-corporate  bg-gd-emerald #}
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-6 col-xl-3">
-                                    <a class="block text-center" href="javascript:void(0)">
-                                        <div class="block-content block-content-full bg-gd-sun">
-                                            <i class="fa fa-music fa-4x text-warning-light"></i>
-                                        </div>
-                                        <div class="block-content block-content-full">
-                                            <div class="font-w600 mb-5">Name</div>
-                                            <div class="font-size-sm text-muted">username</div>
-                                        </div>
-                                        <div class="block-content block-content-full block-content-sm bg-body-light">
-                                            <span class="font-w600 font-size-sm text-danger">Admin</span>
-                                            {# warna text-danger  bg-gd-sun #}
-                                        </div>
-                                    </a>
-                                </div>                                
-                                <!-- END Row #3 -->
+                                {% for user in users %}
+                                    <div class="col-md-6 col-xl-3">
+                                        <a class="block text-center" href="{{ url({'for': 'main-media-portofolio', 'username': user.username}) }}">
+                                            {% switch user.role %}
+                                                {% case constant('Dengarin\Main\Models\User::ROLE_SOUND') %}
+                                                    <div class="block-content block-content-full bg-gd-leaf">
+                                                        <i class="fa fa-music fa-4x text-warning-light"></i>
+                                                    </div>
+                                                {% break %}
+                                                {% case constant('Dengarin\Main\Models\User::ROLE_AMPLIFIER') %}
+                                                    <div class="block-content block-content-full bg-gd-emerald">
+                                                        <i class="fa fa-music fa-4x text-warning-light"></i>
+                                                    </div>
+                                                {% break %}
+                                            {% endswitch %}
+                                            <div class="block-content block-content-full">
+                                                <div class="font-w600 mb-5">{{ user.name }}</div>
+                                                <div class="font-size-sm text-muted">{{ user.username }}</div>
+                                            </div>
+                                            <div class="block-content block-content-full block-content-sm bg-body-light">
+                                                {% switch user.role %}
+                                                    {% case constant('Dengarin\Main\Models\User::ROLE_SOUND') %}
+                                                        <span class="font-w600 font-size-sm text-success">Sound</span>
+                                                    {% break %}
+                                                    {% case constant('Dengarin\Main\Models\User::ROLE_AMPLIFIER') %}
+                                                        <span class="font-w600 font-size-sm text-corporate">Amplifier</span>
+                                                    {% break %}
+                                                {% endswitch %}
+                                            </div>
+                                        </a>
+                                    </div>
+                                {% endfor %}
                             </div>
                         </div>
                         <!-- END Page Content -->

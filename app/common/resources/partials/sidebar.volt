@@ -71,7 +71,7 @@
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a class="link-effect text-dual-primary-dark" href="{{ url('/dashboard/signout') }}">
+                                    <a class="link-effect text-dual-primary-dark" href="{{ url({'for': 'signout'}) }}">
                                         <i class="si si-logout"></i> Sign Out
                                     </a>
                                 </li>

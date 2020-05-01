@@ -32,6 +32,13 @@ $router->add('/signin',array(
     'action' => 'signIn',
 ))->setName('signin');
 
+$router->add('/signout',array(
+    'namespace' => $webNamespace,
+    'module' => $moduleName,
+    'controller' => 'auth',
+    'action' => 'signOut',
+))->setName('signout');
+
 $router->add('/signup',array(
     'namespace' => $webNamespace,
     'module' => $moduleName,
@@ -39,12 +46,19 @@ $router->add('/signup',array(
     'action' => 'signUp',
 ))->setName('signup');
 
+$router->add('/users',array(
+    'namespace' => $webNamespace,
+    'module' => $moduleName,
+    'controller' => 'media',
+    'action' => 'search',
+))->setName('main-media-search');
+
 $router->add('/u/{username}',array(
     'namespace' => $webNamespace,
     'module' => $moduleName,
     'controller' => 'media',
     'action' => 'portfolio',
-));
+))->setName('main-media-portofolio');
 
 $router->add('/u/{username}/follow',array(
     'namespace' => $webNamespace,
@@ -66,13 +80,6 @@ $router->add('/dashboard',array(
     'controller' => 'dashboard',
     'action' => 'index',
 ))->setName('main-dashboard-index');
-
-$router->add('/users',array(
-    'namespace' => $webNamespace,
-    'module' => $moduleName,
-    'controller' => 'media',
-    'action' => 'search',
-))->setName('main-media-search');
 
 // admin
 
