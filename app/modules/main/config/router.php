@@ -39,6 +39,8 @@ $router->add('/signup',array(
     'action' => 'signUp',
 ))->setName('signup');
 
+// user
+
 $router->add('/portfolio',array(
     'namespace' => $webNamespace,
     'module' => $moduleName,
@@ -52,6 +54,13 @@ $router->add('/dashboard',array(
     'controller' => 'dashboard',
     'action' => 'index',
 ))->setName('main-dashboard-index');
+
+$router->add('/users',array(
+    'namespace' => $webNamespace,
+    'module' => $moduleName,
+    'controller' => 'media',
+    'action' => 'search',
+))->setName('main-media-search');
 
 // admin
 
