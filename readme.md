@@ -18,7 +18,7 @@ From [this](https://github.com/anantadwi13/phalcon_boilerplate)
 Check | No | Deskripsi
 --- | --- | ---
 - [x] | 1. | User (Admin, Sound, Amplifier) dapat login ke aplikasi
-- [] | 2. | User (Admin, Sound, Amplifier) dapat logout dari aplikasi
+- [ ] | 2. | User (Admin, Sound, Amplifier) dapat logout dari aplikasi
 - [] | 3. | User (Sound dan Amplifier) dapat register ke aplikasi
 - [] | 4. | User Admin dapat melakukan verifikasi user Sound dan Amplifier
 - [] | 5. | User (Admin, Sound, Amplifier) dapat mencari user (Sound dan Amplifier) lain
