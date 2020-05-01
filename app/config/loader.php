@@ -21,4 +21,8 @@ $loader->registerNamespaces([
     'Dengarin\Main\Models' => APP_PATH . '/modules/main/models',
 ]);
 
+$loader->registerClasses([
+    'Dengarin\Collaboration\Models\Event' => APP_PATH . '/modules/collaboration/models/Event.php'
+]);
+
 $loader->register();

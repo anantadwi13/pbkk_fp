@@ -31,6 +31,13 @@ $router->add('/collaboration/event', [
     'action' => 'index',
 ])->setName('collaboration-event-index');
 
+$router->add('/api/collaboration/event', [
+    'namespace' => $apiNamespace,
+    'module' => $moduleName,
+    'controller' => 'event',
+    'action' => 'index',
+])->setName('api-collaboration-event-index');
+
 $router->add('/collaboration/event/invitation', [
     'namespace' => $webNamespace,
     'module' => $moduleName,

@@ -19,7 +19,7 @@
                                     </a>
                                 {% elseif auth.role == constant('Dengarin\Main\Models\User::ROLE_AMPLIFIER') %}
                                     <a href="{{ url({'for':'main-media-search'}) }}" class="btn btn-sm btn-outline-primary">
-                                        Find Sound To Collaborate
+                                        Collaborate with Sound
                                     </a>
                                 {% endif %}
                             </h3>
