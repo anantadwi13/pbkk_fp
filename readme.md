@@ -16,11 +16,11 @@ From [this](https://github.com/anantadwi13/phalcon_boilerplate)
 ## Daftar Use Case
 | Task           | Time required | Assigned to   | Current Status | Finished | 
 |----------------|---------------|---------------|----------------|-----------|
-| Calendar Cache | > 5 hours  |  | in progress | <ul><li>[ ]</li></ul>
+| Calendar Cache | > 5 hours  |  | in progress | <ul><li>[ ] </li></ul>
 ### Umum
-No | Deskripsi | Check
---- | --- | ---
-1. | User (Admin, Sound, Amplifier) dapat login ke aplikasi | <ul><li>[x] </li></ul> |
+| No | Deskripsi | Check
+| --- | --- | ---
+| 1. | User (Admin, Sound, Amplifier) dapat login ke aplikasi | <ul><li>[x] </li></ul>
 2. | User (Admin, Sound, Amplifier) dapat logout dari aplikasi | <ul><li>[ ] </li></ul>
 3. | User (Sound dan Amplifier) dapat register ke aplikasi | <ul><li>[ ] </li></ul>
 4. | User Admin dapat melakukan verifikasi user Sound dan Amplifier | <ul><i>[ ]  </li></ul>
