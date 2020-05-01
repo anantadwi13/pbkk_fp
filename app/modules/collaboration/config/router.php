@@ -52,6 +52,13 @@ $router->add('/collaboration/event/add', [
     'action' => 'create',
 ])->setName('collaboration-event-create');
 
+$router->add('/@{username}/collaborate', [
+    'namespace' => $webNamespace,
+    'module' => $moduleName,
+    'controller' => 'event',
+    'action' => 'collaborate',
+])->setName('collaboration-event-collab');
+
 $router->add('/collaboration/event/{id}/edit', [
     'namespace' => $webNamespace,
     'module' => $moduleName,
@@ -65,10 +72,3 @@ $router->add('/collaboration/event/{id}/delete', [
     'controller' => 'event',
     'action' => 'delete',
 ])->setName('collaboration-event-delete');
-
-$router->add('/collaboration/aaaa/{username}', [
-    'namespace' => $webNamespace,
-    'module' => $moduleName,
-    'controller' => 'event',
-    'action' => 'index',
-])->setName('collaboration-sound-profile');

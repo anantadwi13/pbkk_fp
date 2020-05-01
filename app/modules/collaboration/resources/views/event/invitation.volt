@@ -35,7 +35,7 @@
                                     <td class="font-w600">{{ event.name }}</td>
                                     <td class="d-none d-sm-table-cell">
                                         {% if event.amplifier is not empty %}
-                                            <a href="{{ url({'for':'collaboration-sound-profile', 'username': event.amplifier.username}) }}" target="_blank">
+                                            <a href="{{ url({'for':'main-media-portofolio', 'username': event.amplifier.username}) }}" target="_blank">
                                                 {{ event.amplifier.name }}
                                             </a>
                                         {% endif %}
@@ -88,7 +88,7 @@
                                                                     <div class="form-material">
                                                                         <label>Amplifier Name</label>
                                                                         <span class="form-control">
-                                                                            <a href="{{ url({'for':'collaboration-sound-profile', 'username': event.amplifier.username}) }}" target="_blank">
+                                                                            <a href="{{ url({'for':'main-media-portofolio', 'username': event.amplifier.username}) }}" target="_blank">
                                                                                 {{ event.amplifier.name }}
                                                                             </a>
                                                                         </span>

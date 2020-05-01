@@ -18,7 +18,7 @@ $acl->setDefaultAction(Enum::ALLOW);
  * Register Component (controller and action)
  */
 $components = [
-    [EventController::class, ['index', 'invitation', 'create', 'update', 'delete', 'followUp']],
+    [EventController::class, ['index', 'invitation', 'create', 'update', 'delete', 'followUp', 'collaborate']],
 ];
 
 foreach ($components as $component) {
@@ -34,7 +34,8 @@ foreach ($components as $component) {
  * Defining Access Controls
  */
 $accesses = [
-    [Enum::DENY, User::ROLE_GUEST, EventController::class, ['index', 'invitation', 'create', 'update', 'delete', 'followUp']],
+    [Enum::DENY, User::ROLE_GUEST, EventController::class, ['index', 'invitation', 'create', 'update', 'delete', 'followUp', 'collaborate']],
+    [Enum::DENY, User::ROLE_SOUND, EventController::class, ['collaborate']],
     [Enum::DENY, User::ROLE_AMPLIFIER, EventController::class, ['invitation', 'create']],
 ];
 

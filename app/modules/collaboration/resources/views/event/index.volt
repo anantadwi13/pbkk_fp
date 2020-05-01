@@ -17,6 +17,10 @@
                                     <a href="{{ url({'for':'collaboration-event-create'}) }}" class="btn btn-sm btn-outline-primary">
                                         Add New Event
                                     </a>
+                                {% elseif auth.role == constant('Dengarin\Main\Models\User::ROLE_AMPLIFIER') %}
+                                    <a href="{{ url({'for':'main-media-search'}) }}" class="btn btn-sm btn-outline-primary">
+                                        Find Sound To Collaborate
+                                    </a>
                                 {% endif %}
                             </h3>
                         </div>
@@ -42,12 +46,12 @@
                                     <td class="font-w600">{{ event.name }}</td>
                                     <td class="d-none d-sm-table-cell">
                                         {% if auth.role == constant('Dengarin\Main\Models\User::ROLE_AMPLIFIER') %}
-                                            <a href="{{ url({'for':'collaboration-sound-profile', 'username': event.sound.username}) }}" target="_blank">
+                                            <a href="{{ url({'for':'main-media-portofolio', 'username': event.sound.username}) }}" target="_blank">
                                                 {{ event.sound.name }}
                                             </a>
                                         {% elseif auth.role == constant('Dengarin\Main\Models\User::ROLE_SOUND') %}
                                             {% if event.amplifier is not empty %}
-                                                <a href="{{ url({'for':'collaboration-sound-profile', 'username': event.amplifier.username}) }}" target="_blank">
+                                                <a href="{{ url({'for':'main-media-portofolio', 'username': event.amplifier.username}) }}" target="_blank">
                                                     {{ event.amplifier.name }}
                                                 </a>
                                             {% endif %}
@@ -101,7 +105,7 @@
                                                                     <div class="form-material">
                                                                         <label>Amplifier Name</label>
                                                                         <span class="form-control">
-                                                                            <a href="{{ url({'for':'collaboration-sound-profile', 'username': event.amplifier.username}) }}" target="_blank">
+                                                                            <a href="{{ url({'for':'main-media-portofolio', 'username': event.amplifier.username}) }}" target="_blank">
                                                                                 {{ event.amplifier.name }}
                                                                             </a>
                                                                         </span>
@@ -114,7 +118,7 @@
                                                                     <div class="form-material">
                                                                         <label>Sound Name</label>
                                                                         <span class="form-control">
-                                                                        <a href="{{ url({'for':'collaboration-sound-profile', 'username': event.sound.username}) }}" target="_blank">
+                                                                        <a href="{{ url({'for':'main-media-portofolio', 'username': event.sound.username}) }}" target="_blank">
                                                                             {{ event.sound.name }}
                                                                         </a>
                                                                     </span>

@@ -14,6 +14,10 @@ use Phalcon\Validation;
 
 class EventController extends ModuleController
 {
+    /**
+     * Manage event
+     * for Sound and Amplifier user
+     */
     public function indexAction()
     {
         $this->view->setLayout('datatables');
@@ -37,6 +41,9 @@ class EventController extends ModuleController
         ]);
     }
 
+    /**
+     * Invitation Action for Sound Users
+     */
     public function invitationAction()
     {
         $this->view->setLayout('datatables');
@@ -62,11 +69,16 @@ class EventController extends ModuleController
         $this->view->events = $events;
     }
 
+
+    /**
+     * Create Action for Sound Users
+     * @throws Exception
+     */
     public function createAction()
     {
         $this->view->setLayout('form');
 
-        if ($this->request->isPost()) {
+        if ($this->request->isPost() && $this->security->checkToken()) {
             /**
              * Validation
              */
@@ -103,6 +115,56 @@ class EventController extends ModuleController
         }
     }
 
+    public function collaborateAction($username){
+        $this->view->setLayout('form');
+
+        /** @var User $user */
+        $user = User::findFirstByUsername($username);
+        if (!$user || $user->isStatus(User::STATUS_DISABLED) || $user->role != User::ROLE_SOUND){
+            $this->redirectNotFound();
+            return;
+        }
+
+        if ($this->request->isPost() && $this->security->checkToken()) {
+            /**
+             * Validation
+             */
+            $validator = new EventValidation(EventValidation::TYPE_AMPLIFIER_CREATE);
+            $errors = $validator->validate($this->request->getPost());
+
+            if ($errors->count()) {
+                foreach ($errors as $error)
+                    $this->flashSession->error($error->getMessage());
+                $this->view->user = $user;
+                return;
+            }
+
+            $time_start = (new DateTime($this->request->get('start_date') . ' ' . $this->request->get('start_time')))
+                ->format('Y-m-d H:i:s');
+            $time_end = (new DateTime($this->request->get('end_date') . ' ' . $this->request->get('end_time')))
+                ->format('Y-m-d H:i:s');
+
+            /**
+             * Insert Event
+             */
+
+            $event = new Event();
+            $event->assign($this->request->getPost(), ['name', 'description', 'location']);
+            $event->sound_user_id = $user->id;
+            $event->amplifier_user_id = $this->auth->id;
+            $event->time_start = $time_start;
+            $event->time_end = $time_end;
+            if ($event->save()) {
+                $this->flashSession->success('Event has been created successfully');
+                $this->response->redirect($this->url->get(['for' => 'collaboration-event-index']));
+            } else
+                foreach ($event->getMessages() as $message)
+                    $this->flash->error($message->getMessage());
+        }
+
+        $this->view->user = $user;
+    }
+
     public function updateAction($id)
     {
         $this->view->setLayout('form');
@@ -125,7 +187,7 @@ class EventController extends ModuleController
         }
 
 
-        if ($this->request->isPost()) {
+        if ($this->request->isPost() && $this->security->checkToken()) {
             /**
              * Validation
              */
@@ -175,7 +237,7 @@ class EventController extends ModuleController
 
     public function deleteAction()
     {
-        if ($this->request->isPost()) {
+        if ($this->request->isPost() && $this->security->checkToken()) {
             try {
                 $id = $this->dispatcher->getParam('id');
                 /** @var Event $event */
@@ -206,7 +268,7 @@ class EventController extends ModuleController
 
     public function followUpAction($id)
     {
-        if ($this->request->isPost()) {
+        if ($this->request->isPost() && $this->security->checkToken()) {
             try {
                 $status = $this->request->getPost('status');
 

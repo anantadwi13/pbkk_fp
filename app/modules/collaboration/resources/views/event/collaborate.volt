@@ -12,20 +12,29 @@
                             <div class="block">
 
                                 <div class="block-header block-header-default">
-                                    <h3 class="block-title">Add New Event</h3>
+                                    <h3 class="block-title">Collab Now!</h3>
                                 </div>
                                 <div class="block-content">
                                     <form method="post">
                                         <input hidden name="{{ security.getTokenKey() }}" value="{{ security.getToken() }}">
-                                        <p class="p-10 bg-info-light">
-                                            If you have any event without Amplifier, you can insert it here!
-                                        </p>
                                         <div class="form-group row">
                                             <div class="col-md-9">
                                                 <div class="form-material">
                                                     <input type="text" class="form-control" id="name"
                                                            name="name" value="{{ request.get('name') }}">
                                                     <label for="name">Event Name</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-9">
+                                                <div class="form-material">
+                                                    <label for="with">With</label>
+                                                    <span type="text" class="form-control" id="with">
+                                                        <a href="{{ url({'for': 'main-media-portofolio', 'username': user.username}) }}" target="_blank">
+                                                        {{ user.name }}
+                                                        </a>
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>

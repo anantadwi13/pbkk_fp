@@ -33,44 +33,39 @@ class BaseModuleController extends AppController
         if ($this->isAuthenticated())
             $role = $this->auth()->role;
 
-        $sidebar->addItem(new Anchor('Dashboard', $this->url->get(['for' => 'main-dashboard-index']), 'si si-cup'));
-
         switch ($role){
             case User::ROLE_SOUND:
                 $sidebar
+                    ->addItem(new Anchor('Dashboard', $this->url->get(['for' => 'main-dashboard-index']), 'si si-cup'))
                     ->addHeading('Collaboration', 'Co')
                     ->addItem(
                         (new SubMenu('Events', 'si si-calendar'))
                             ->addItem(new Anchor('Manage Event', $this->url->get(['for' => 'collaboration-event-index'])))
                             ->addItem(new Anchor('Invitation', $this->url->get(['for' => 'collaboration-event-invitation'])))
 //                            ->addItem(new Anchor('Calendar', $this->url->get(['for' => 'collaboration-event-index-2', 'controller'=>'aaa'])))
-                    )
-                    ->addHeading('Challenge', 'Ch')
-                    ->addItem(new Anchor('Kompetisi', $this->url->get('/competition'), 'si si-trophy'));
+                    );
                 break;
             case User::ROLE_AMPLIFIER:
                 $sidebar
+                    ->addItem(new Anchor('Dashboard', $this->url->get(['for' => 'main-dashboard-index']), 'si si-cup'))
                     ->addHeading('Collaboration', 'Co')
                     ->addItem(
                         (new SubMenu('Events', 'si si-calendar'))
                             ->addItem(new Anchor('Manage Event', $this->url->get(['for' => 'collaboration-event-index'])))
                     )
-                    ->addHeading('Challenge', 'Ch')
-                    ->addItem(new Anchor('Kompetisi', $this->url->get('/competition'), 'si si-trophy'));
+                    ->addItem(new Anchor('Find Users', $this->url->get(['for' => 'main-media-search']), 'si si-users'));
                 break;
             case User::ROLE_ADMIN:
                 $sidebar
+                    ->addItem(new Anchor('Dashboard', $this->url->get(['for' => 'main-dashboard-index']), 'si si-cup'))
                     ->addHeading('Collaboration', 'Co')
-//                    ->addItem(new Anchor('Sounds', $this->url->get(['for' => 'collaboration-sound-index']), 'si si-volume-2'))
-                    ->addHeading('Challenge', 'Ch')
-                    ->addItem(new Anchor('Kompetisi', $this->url->get('/competition'), 'si si-trophy'));
+                    ->addItem(new Anchor('Find Users', $this->url->get(['for' => 'main-media-search']), 'si si-users'));
                 break;
             default:
                 $sidebar
+                    ->addItem(new Anchor('Home', $this->url->get('/'), 'si si-home'))
                     ->addHeading('Collaboration', 'Co')
-//                    ->addItem(new Anchor('Sounds', $this->url->get(['for' => 'collaboration-sound-index']), 'si si-volume-2'))
-                    ->addHeading('Challenge', 'Ch')
-                    ->addItem(new Anchor('Kompetisi', $this->url->get('/competition'), 'si si-trophy'));
+                    ->addItem(new Anchor('Find Users', $this->url->get(['for' => 'main-media-search']), 'si si-users'));
         }
 
         $this->setSideBar($sidebar);
