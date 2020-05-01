@@ -26,7 +26,7 @@ $components = [
     [DashboardController::class, ['index']],
     [AuthController::class, ['index', 'signup']],
     [MediaController::class, ['index']],
-    [UserController::class, ['index', 'verification']],
+    [UserController::class, ['index', 'verification', 'follow', 'unFollow']],
 ];
 
 foreach ($components as $component) {
@@ -44,7 +44,7 @@ foreach ($components as $component) {
 $accesses = [
     [Enum::DENY, User::ROLE_GUEST, DashboardController::class, ['index']],
     [Enum::DENY, User::ROLE_GUEST, MediaController::class, ['index']],
-    [Enum::DENY, User::ROLE_GUEST, UserController::class, ['index', 'verification']],
+    [Enum::DENY, User::ROLE_GUEST, UserController::class, ['index', 'verification', 'follow', 'unFollow']],
 
     [Enum::DENY, User::ROLE_SOUND, UserController::class, ['index', 'verification']],
 

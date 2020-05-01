@@ -26,7 +26,7 @@
                         <!-- Page Content -->
                         <div class="content">
                             <!-- Simple User Widgets -->
-                            <h2 class="content-heading">Dengar.in</h2>
+                            <h2 class="content-heading">dengar.in</h2>
                             <div class="row">
                                 {% for user in users %}
                                     <div class="col-md-6 col-xl-3">
