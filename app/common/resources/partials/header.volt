@@ -14,8 +14,10 @@
 
                         <!-- Open Search Section -->
                         <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                        <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="header_search_on">
-                            <i class="fa fa-search"></i>
+                        <button type="button" class="btn btn-circle btn-dual-secondary">
+                            <a href="{{url({'for':'main-media-search'})}}">
+                                <i class="fa fa-search"></i>
+                            </a>
                         </button>
                         <!-- END Open Search Section -->
 

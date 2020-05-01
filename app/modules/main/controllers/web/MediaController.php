@@ -14,4 +14,7 @@ class MediaController extends ModuleController
             'body' => 'This is body'
         ]);
     }
+    public function searchAction(){
+        
+    }
 }
