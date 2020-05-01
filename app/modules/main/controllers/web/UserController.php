@@ -5,6 +5,7 @@ namespace Dengarin\Main\Controllers\Web;
 use App\Utils\Sidebar\Item\Anchor;
 use App\Utils\Sidebar\Item\SubMenu;
 use Dengarin\Main\Controllers\ModuleController;
+use Dengarin\Main\Models\Friend;
 use Dengarin\Main\Models\User;
 
 class UserController extends ModuleController
@@ -48,5 +49,79 @@ class UserController extends ModuleController
                 3 => User::STATUS_DISABLED,
             ]
         ]);
+    }
+
+    public function followAction($username){
+        if (!$this->request->isPost()) {
+            $this->response->redirect($this->request->getHTTPReferer());
+            return;
+        }
+
+        $user = User::findFirstByUsername($username);
+
+        if (!$user){
+            $this->flashSession->error('User not found!');
+            $this->response->redirect($this->request->getHTTPReferer());
+            return;
+        }
+        elseif ($user->id == $this->auth->id){
+            $this->flashSession->error('Unable to follow yourself!');
+            $this->response->redirect($this->request->getHTTPReferer());
+            return;
+        }
+
+        $friend = new Friend();
+        $friend->user_id = $this->auth->id;
+        $friend->following_user_id = $user->id;
+        $friend->enableStatus(Friend::STATUS_TAKE_ACTION | Friend::STATUS_ACCEPTED);
+
+        if ($friend->save()){
+            $this->flashSession->success('Followed ' . $user->name);
+            $this->response->redirect($this->request->getHTTPReferer());
+            return;
+        } else {
+            $this->flashSession->error('Unable to follow ' . $user->name);
+            $this->response->redirect($this->request->getHTTPReferer());
+            return;
+        }
+    }
+
+    public function unFollowAction($username){
+        if (!$this->request->isPost()) {
+            $this->response->redirect($this->request->getHTTPReferer());
+            return;
+        }
+
+        $user = User::findFirstByUsername($username);
+
+        if (!$user){
+            $this->flashSession->error('User not found!');
+            $this->response->redirect($this->request->getHTTPReferer());
+            return;
+        }
+        elseif ($user->id == $this->auth->id){
+            $this->flashSession->error('Unable to follow user!');
+            $this->response->redirect($this->request->getHTTPReferer());
+            return;
+        }
+
+        /** @var Friend $friend */
+        $friend = Friend::findFirst([
+            'conditions' => 'user_id = :user_id: and following_user_id = :following:',
+            'bind' => [
+                'user_id' => $this->auth->id,
+                'following' => $user->id
+            ]
+        ]);
+
+        if ($friend && $friend->delete()){
+            $this->flashSession->success('Unfollowed ' . $user->name);
+            $this->response->redirect($this->request->getHTTPReferer());
+            return;
+        } else {
+            $this->flashSession->success('Unable to unfollow ' . $user->name);
+            $this->response->redirect($this->request->getHTTPReferer());
+            return;
+        }
     }
 }
