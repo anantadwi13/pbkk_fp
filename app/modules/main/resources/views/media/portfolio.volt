@@ -23,22 +23,40 @@
                             <!-- END Personal -->
 
                             <!-- Actions -->
-                            {% if not followed %}
-                            <form action="{{ url({'for': 'main-user-follow', 'username': user.username}) }}" method="post" style="display: inline-block">
-                                <button type="submit" class="btn btn-rounded btn-hero btn-sm btn-alt-success mb-5">
-                                    <i class="fa fa-plus mr-5"></i> Follow
-                                </button>
-                            </form>
-                            {% else %}
-                            <form action="{{ url({'for': 'main-user-unfollow', 'username': user.username}) }}" method="post" style="display: inline-block">
-                                <button type="submit" class="btn btn-rounded btn-hero btn-sm btn-alt-danger mb-5">
-                                    <i class="fa fa-minus mr-5"></i> Unfollow
-                                </button>
-                            </form>
+                            {% if auth is defined and user.id != auth.id %}
+                                {% if not followed %}
+                                <form action="{{ url({'for': 'main-user-follow', 'username': user.username}) }}" method="post" style="display: inline-block">
+                                    <button type="submit" class="btn btn-rounded btn-hero btn-sm btn-alt-success mb-5">
+                                        <i class="fa fa-plus mr-5"></i> Follow
+                                    </button>
+                                </form>
+                                {% else %}
+                                <form action="{{ url({'for': 'main-user-unfollow', 'username': user.username}) }}" method="post" style="display: inline-block">
+                                    <button type="submit" class="btn btn-rounded btn-hero btn-sm btn-alt-danger mb-5">
+                                        <i class="fa fa-minus mr-5"></i> Unfollow
+                                    </button>
+                                </form>
+                                {% endif %}
                             {% endif %}
-{#                            <button type="button" class="btn btn-rounded btn-hero btn-sm btn-alt-danger mb-5">#}
-{#                                <i class="fa fa-times mr-5"></i> Block#}
-{#                            </button>#}
+
+                            {% if auth is defined and auth.role == constant('Dengarin\Main\Models\User::ROLE_AMPLIFIER') and
+                                user.role == constant('Dengarin\Main\Models\User::ROLE_SOUND') %}
+                                <a href="{{ url({'for': 'collaboration-event-collab', 'username': user.username}) }}"
+                                   class="btn btn-rounded btn-hero btn-sm btn-alt-info mb-5 ml-5">
+                                    <i class="fa fa-group mr-5"></i> Collaborate!
+                                </a>
+                            {% endif %}
+
+                            {% if auth is not defined %}
+                                <a href="{{ url({'for': 'signin'}) }}" class="btn btn-rounded btn-hero btn-sm btn-alt-success mb-5">
+                                    <i class="fa fa-plus mr-5"></i> Follow
+                                </a>
+                                {% if user.role == constant('Dengarin\Main\Models\User::ROLE_SOUND') %}
+                                    <a href="{{ url({'for': 'signin'}) }}" class="btn btn-rounded btn-hero btn-sm btn-alt-info mb-5 ml-5">
+                                        <i class="fa fa-plus mr-5"></i> Collaborate!
+                                    </a>
+                                {% endif %}
+                            {% endif %}
                             <!-- END Actions -->
                         </div>
                     </div>

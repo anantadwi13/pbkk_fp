@@ -53,21 +53,21 @@ $router->add('/users',array(
     'action' => 'search',
 ))->setName('main-media-search');
 
-$router->add('/u/{username}',array(
+$router->add('/@{username}',array(
     'namespace' => $webNamespace,
     'module' => $moduleName,
     'controller' => 'media',
     'action' => 'portfolio',
 ))->setName('main-media-portofolio');
 
-$router->add('/u/{username}/follow',array(
+$router->add('/@{username}/follow',array(
     'namespace' => $webNamespace,
     'module' => $moduleName,
     'controller' => 'user',
     'action' => 'follow',
 ))->setName('main-user-follow');
 
-$router->add('/u/{username}/unfollow',array(
+$router->add('/@{username}/unfollow',array(
     'namespace' => $webNamespace,
     'module' => $moduleName,
     'controller' => 'user',
