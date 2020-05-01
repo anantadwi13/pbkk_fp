@@ -137,7 +137,6 @@ class ManagementController extends ModuleController
         $title = $id . ' - Competition Management';
         $this->view->setVars([
             'title' => $title,
-            'body' => 'This is body',
             'id' => $id
         ]);
     }
