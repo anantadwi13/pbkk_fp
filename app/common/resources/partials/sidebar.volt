@@ -53,14 +53,16 @@
                     <div class="content-side content-side-full content-side-user px-10 align-parent">
                         <!-- Visible only in mini mode -->
                         <div class="sidebar-mini-visible-b align-v animated fadeIn">
-                            <img class="img-avatar img-avatar32" src="{{ url('/') }}assets/media/avatars/avatar15.jpg" alt="">
+                            <a href="{{ url('/') }}">
+                                <i class="fa fa-music 4x"></i>
+                            </a>
                         </div>
                         <!-- END Visible only in mini mode -->
 
                         <!-- Visible only in normal mode -->
                         <div class="sidebar-mini-hidden-b text-center">
-                            <a class="img-link" href="{{ url('/') }}">
-                                <img class="img-avatar" src="{{ url('/') }}assets/media/avatars/avatar15.jpg" alt="">
+                            <a href="{{ url('/') }}">
+                                <i class="fa fa-music fa-4x"></i>
                             </a>
                             <ul class="list-inline mt-10">
                                 <li class="list-inline-item">
@@ -69,7 +71,7 @@
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a class="link-effect text-dual-primary-dark" href="{{ url('/dashboard/signout') }}">
+                                    <a class="link-effect text-dual-primary-dark" href="{{ url({'for': 'signout'}) }}">
                                         <i class="si si-logout"></i> Sign Out
                                     </a>
                                 </li>

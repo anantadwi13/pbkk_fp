@@ -4,10 +4,12 @@
 
                 <!-- Page Content -->
                 <div class="bg-image" style="background-image: url('{{ url('/') }}assets/media/photos/photo44.jpg');">
-                    {{ flashSession.output() }}
                     <div class="hero bg-primary-dark-op">
                         <div class="hero-inner">
                             <div class="content content-full text-center">
+                                <div class="col-md-6 offset-md-3" data-toggle="appear" data-class="animated fadeInDown">
+                                    {{ flashSession.output() }}
+                                </div>
                                 <h2 class="display-4 font-w700 text-white mb-10 invisible" data-toggle="appear" data-class="animated fadeInDown">
                                     Halo, {{ auth.name }}!
                                 </h2>
