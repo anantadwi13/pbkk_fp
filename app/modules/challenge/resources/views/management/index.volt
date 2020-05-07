@@ -40,10 +40,10 @@
                                         <td class="text-center">{{ loop.index }}</td>
                                         <td class="font-w600">{{ c.title }}</td>
                                         <td class="text-center d-none d-sm-table-cell">
-                                            {% if getdate >= c.duedate %}
-                                            <span class="badge badge-info">{{ c.duedate }}</span>
+                                            {% if expired[loop.index -1] %}
+                                            <span class="badge badge-danger">{{ readable_date[loop.index -1] }}</span>
                                             {% else %}
-                                            <span class="badge badge-danger">{{ c.duedate }}</span>
+                                            <span class="badge badge-info">{{ readable_date[loop.index -1] }}</span>
                                             {% endif %}
                                         </td>
                                         <td class="text-center">
@@ -89,7 +89,7 @@
                                     <div class="form-group row">
                                         <label class="col-12" for="example-text-input">Due Date</label>
                                         <div class="col-lg-6">
-                                            <div class="form-control-plaintext">{{ c.duedate }}</div>
+                                            <div class="form-control-plaintext">{{ readable_date[loop.index -1] }}</div>
                                             <div class="form-text text-muted">Secara default pada 00:00:00</div>
                                         </div>
                                     </div>
@@ -126,7 +126,7 @@
                                     </div>
                                 </div>
                                 <div class="block-content">
-                                    <form method="post">
+                                    <form method="post" enctype="multipart/form-data">
                                         <div class="form-group row">
                                             <label class="col-12" for="example-text-input">Title</label>
                                             <div class="col-md-12">
@@ -162,7 +162,7 @@
                                                     <!-- Populating custom file input label with the selected filename (data-toggle="custom-file-input" is initialized in Helpers.coreBootstrapCustomFileInput()) -->
                                                     <input type="file" class="custom-file-input" id="image" name="image" data-toggle="custom-file-input">
                                                     <label class="custom-file-label" for="image">Gambarmu.jpg</label>
-                                                    <div class="form-text text-muted">Poster yang mewakili challenge di dengar.in</div>
+                                                    <div class="form-text text-muted">Poster landscape yang mewakili challenge di dengar.in</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -265,8 +265,8 @@
                                                 <div class="custom-file">
                                                     <!-- Populating custom file input label with the selected filename (data-toggle="custom-file-input" is initialized in Helpers.coreBootstrapCustomFileInput()) -->
                                                     <input type="file" class="custom-file-input" id="image" name="image" data-toggle="custom-file-input">
-                                                    <label class="custom-file-label" for="image">Pilih gambar poster 4:3</label>
-                                                    <div class="form-text text-muted">Poster yang mewakili challenge di dengar.in</div>
+                                                    <label class="custom-file-label" for="image">Pilih gambar poster landscape 4:3</label>
+                                                    <div class="form-text text-muted">Poster landscape yang mewakili challenge di dengar.in</div>
                                                 </div>
                                             </div>
                                         </div>

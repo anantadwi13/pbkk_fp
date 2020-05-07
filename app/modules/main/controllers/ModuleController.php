@@ -21,7 +21,10 @@ class ModuleController extends BaseModuleController
                         ->addItem(
                             (new SubMenu('Pengguna', 'si si-user'))
                                 ->addItem(new Anchor('Kelola', $this->url->get(['for'=>'main-user-index'])))
-                                ->addItem(new Anchor('Verifikasi', $this->url->get(['for'=>'main-user-verification'])))
+                                ->addItem(new Anchor('Verifikasi', $this->url->get(['for'=>'main-user-verification']))))
+                        ->addItem(
+                            (new SubMenu('Manajemen', 'si si-briefcase'))
+                                ->addItem(new Anchor('Challenge', $this->url->get(['for'=>'challenge-manage-competition'])))
                         );
                     break;
             }

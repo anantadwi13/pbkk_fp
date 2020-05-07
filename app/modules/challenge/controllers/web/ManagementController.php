@@ -17,15 +17,20 @@ class ManagementController extends ModuleController
         */
         $this->view->competition = Competition::find();
         $dates = $this->view->competition;
-        // debug expired date later
-        // foreach ($dates as $date) {            
-        //     $now = date_create("now");
-        //     $duedate = date_create($date->duedate);
-        //     var_dump(date_diff($now,$duedate));
-        // }
-        // exit();
+        $sign = [];
+        $readable_date = [];
+        foreach ($dates as $date) {            
+            $now = time();
+            $duedate = strtotime($date->duedate);
+            $diff = $now - $duedate;
+            $sign[] = $diff <= 0 ? false : true;
+            $dues = getdate($duedate);
+            $d = "$dues[weekday], $dues[month] $dues[mday] $dues[year]";
+            $readable_date[] = $d;
+        }
         $this->view->setVars([
-            'getdate' => getdate(),
+            'expired' => $sign,
+            'readable_date' => $readable_date
         ]);
 
         if ($this->request->isPost())
@@ -76,7 +81,7 @@ class ManagementController extends ModuleController
                 /*
                 * Editing competition
                 */
-                $competition = Competition::findFirst($this->request->getPost('idcomp'));
+                $competition = Competition::findFirst($this->request->getPost('id'));
                 if ($competition)
                 {
                     if ($this->request->hasFiles())
@@ -96,6 +101,8 @@ class ManagementController extends ModuleController
                         // {
                         //     $this->flash->error('File hasn\'t been uploaded');
                         // }
+                        // detachment image file at the web server
+                        unlink(BASE_PATH . "/public/challenge_competition/" . $competition->image);
                         $competition->image = $filepath;
                         // datepicker didn't work and need to convert,
                         // so I temporarily debug with this
@@ -117,9 +124,10 @@ class ManagementController extends ModuleController
                 /*
                 * Deleting new competition
                 */
-                $competition = Competition::findFirst($this->request->getPost('idcomp'));
-                // detachment image file for later
-                if ($competition->delete())
+                $competition = Competition::findFirst($this->request->getPost('id'));
+                // detachment image file at the web server
+                $image = $competition->image;
+                if (unlink(BASE_PATH . "/public/challenge_competition/" . $image) && $competition->delete())
                 {
                     $this->flashSession->success('Challenge has been deleted succesfully');
                     $this->response->redirect(['for' => 'challenge-manage-competition']);

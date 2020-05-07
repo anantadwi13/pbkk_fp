@@ -15,6 +15,23 @@ class CompetitionController extends ModuleController
         * Read all competition
         */
         $this->view->competition = Competition::find();
+        $dates = $this->view->competition;
+        $sign = [];
+        $readable_date = [];
+        foreach ($dates as $date) {
+            $now = time();
+            $duedate = strtotime($date->duedate);
+            $diff = $now - $duedate;
+            $sign[] = $diff <= 0 ? false : true;
+            $dues = getdate($duedate);
+            $d = "$dues[weekday], $dues[month] $dues[mday] $dues[year]";
+            $readable_date[] = $d;
+        }
+        // change the button if the challenge past due
+        $this->view->setVars([
+            'expired' => $sign,
+            'readable_date' => $readable_date
+        ]);
     }
     
     public function showAction()
@@ -25,9 +42,20 @@ class CompetitionController extends ModuleController
         $id = $this->dispatcher->getParam('id');
         $competition = Competition::findFirst($id);
         $this->view->competition = $competition;
+        // unlocked submission if the challenge past due
+        $dates = $competition->duedate;
+        $now = time();
+        $duedate = strtotime($dates);
+        $diff = $now - $duedate;
+        $sign = $diff <= 0 ? false : true;
+        // get readable date
+        $dues = getdate($duedate);
+        $d = "$dues[weekday], $dues[month] $dues[mday] $dues[year]";
         $title = $competition->title . ' - Competition Management';
         $this->view->setVars([
             'title' => $title,
+            'expired' => $sign,
+            'readable_date' => $d
         ]);
         /*
         * Read any submission from user

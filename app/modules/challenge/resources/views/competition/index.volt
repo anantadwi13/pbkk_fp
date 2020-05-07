@@ -14,10 +14,16 @@
                                 <div class="options-overlay bg-primary-dark-op">
                                     <div class="options-overlay-content">
                                         <h3 class="h4 text-white mb-5">{{ c.title }}</h3>
-                                        <h4 class="h6 text-white-op mb-15">{{ c.duedate }}</h4>
+                                        <h4 class="h6 text-white-op mb-15">{{ readable_date[loop.index -1] }}</h4>
+                                        {% if expired[loop.index -1] %}
                                         <a class="btn btn-sm btn-rounded btn-alt-info min-width-75" href="{{url({'for':'competition'})}}/{{c.idcomp}}">
-                                            <i class="fa fa-search"></i> Lihat
+                                            <i class="fa fa-check"></i> Info
                                         </a>
+                                        {% else %}
+                                        <a class="btn btn-sm btn-rounded btn-alt-success min-width-75" href="{{url({'for':'competition'})}}/{{c.idcomp}}">
+                                            <i class="fa fa-search"></i> Ikuti
+                                        </a>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

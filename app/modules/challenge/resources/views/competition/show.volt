@@ -7,7 +7,7 @@
                         <div class="content content-top text-center">
                             <div class="py-100">
                                 <h1 class="font-w700 text-white mb-10">{{competition.title}}</h1>
-                                <h2 class="h4 font-w400 text-white-op">{{competition.duedate}}</h2>
+                                <h2 class="h4 font-w400 text-white-op">{{readable_date}}</h2>
                             </div>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <!-- END Story -->
-
+                {% if !expired %}
                 <!-- Responses -->
                 <div class="bg-body-dark">
                     <div class="content content-full">
@@ -52,6 +52,6 @@
                     </div>
                 </div>
                 <!-- END Responses -->
-
+                {% endif %}
             </main>
             <!-- END Main Container -->
