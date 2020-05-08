@@ -270,12 +270,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    {#</form>#}
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Batal</button>
-                                {#<form method="post">#}
                                     <button type="submit" id="create" name="create" value="create" class="btn btn-alt-success">
                                         <i class="fa fa-check"></i> Buat
                                     </button>

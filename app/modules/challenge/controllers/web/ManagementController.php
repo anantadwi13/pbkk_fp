@@ -9,6 +9,25 @@ use Phalcon\Dispatcher;
 
 class ManagementController extends ModuleController
 {
+    public function rrmdir($dir): bool
+    { 
+        if (is_dir($dir)) { 
+            $objects = scandir($dir); 
+            foreach ($objects as $object) { 
+                if ($object != "." && $object != "..") { 
+                if (is_dir($dir."/".$object))
+                    rrmdir($dir."/".$object);
+                else
+                    unlink($dir."/".$object); 
+                } 
+            }
+            rmdir($dir);
+            return true; 
+        }else {
+            return false;
+        }
+    }
+    
     public function indexAction()
     {
         $this->view->title = 'Competition Management';
@@ -60,6 +79,14 @@ class ManagementController extends ModuleController
                     $competition = new Competition();
                     $competition->assign($this->request->getPost(),['title', 'description', 'duedate']);
                     $competition->image = $filepath;
+
+                    // make submission directory
+                    $submission_folder = $competition->title . "_DENGAR-IN_" . $competition->duedate;
+                    if (!mkdir(BASE_PATH . "/public/challenge_submission/" . $submission_folder)) {
+                        $this->flashSession->error('Failed to create submission directory');
+                        $this->response->redirect(['for' => 'challenge-manage-competition']);
+                    }
+
                     // datepicker didn't work and need to convert,
                     // so I temporarily debug with this
                     // $date = explode("-",$competition->duedate);
@@ -74,7 +101,7 @@ class ManagementController extends ModuleController
                             $this->flash->error($message->getMessage());
                     }
                 }else {
-                    $this->flashSession->error('Your format image file is incorrect');
+                    $this->flashSession->error('Your format image file is incorrect or have reach our size limit');
                     $this->response->redirect(['for' => 'challenge-manage-competition']);
                 }
             }elseif ($this->request->getPost("edit")  && $this->security->checkToken()) {
@@ -102,7 +129,10 @@ class ManagementController extends ModuleController
                         //     $this->flash->error('File hasn\'t been uploaded');
                         // }
                         // detachment image file at the web server
-                        unlink(BASE_PATH . "/public/challenge_competition/" . $competition->image);
+                        if (!unlink(BASE_PATH . "/public/challenge_competition/" . $competition->image)){
+                            $this->flashSession->error('Failed to delete the old image poster');
+                            $this->response->redirect(['for' => 'challenge-manage-competition']);
+                        }
                         $competition->image = $filepath;
                         // datepicker didn't work and need to convert,
                         // so I temporarily debug with this
@@ -111,7 +141,17 @@ class ManagementController extends ModuleController
                         // $date = join("-",$date);
                         // $competition->duedate = $date;
                     }
+                    // rename submission directory
+                    $old_submission_folder = $competition->title . "_DENGAR-IN_" . $competition->duedate;
                     $competition->assign($this->request->getPost(),['title', 'description', 'duedate']);
+                    $new_submission_folder = $competition->title . "_DENGAR-IN_" . $competition->duedate;
+                    if (!rename(BASE_PATH . "/public/challenge_submission/" . $old_submission_folder,
+                        BASE_PATH . "/public/challenge_submission/" . $new_submission_folder))
+                    {
+                        $this->flashSession->error('Failed to migrate the entire submission directory');
+                        $this->response->redirect(['for' => 'challenge-manage-competition']);
+                    }
+
                     if ($competition->update()){
                         $this->flashSession->success('Challenge has been edited succesfully');
                         $this->response->redirect(['for' => 'challenge-manage-competition']);
@@ -125,6 +165,13 @@ class ManagementController extends ModuleController
                 * Deleting new competition
                 */
                 $competition = Competition::findFirst($this->request->getPost('id'));
+                // delete submission directory
+                $submission_folder = $competition->title . "_DENGAR-IN_" . $competition->duedate;
+                if (!$this->rrmdir(BASE_PATH . "/public/challenge_submission/" . $submission_folder)) {
+                    $this->flashSession->error('Failed to delete entire submission directory');
+                    $this->response->redirect(['for' => 'challenge-manage-competition']);
+                }
+
                 // detachment image file at the web server
                 $image = $competition->image;
                 if (unlink(BASE_PATH . "/public/challenge_competition/" . $image) && $competition->delete())

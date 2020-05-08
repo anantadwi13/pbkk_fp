@@ -48,14 +48,20 @@ class CompetitionController extends ModuleController
         $duedate = strtotime($dates);
         $diff = $now - $duedate;
         $sign = $diff <= 0 ? false : true;
+        
         // get readable date
         $dues = getdate($duedate);
         $d = "$dues[weekday], $dues[month] $dues[mday] $dues[year]";
         $title = $competition->title . ' - Competition Management';
+
+        // get id user from auth session
+        $userid = $this->auth()->id;
+
         $this->view->setVars([
             'title' => $title,
             'expired' => $sign,
-            'readable_date' => $d
+            'readable_date' => $d,
+            'iduser' => $userid
         ]);
         /*
         * Read any submission from user
