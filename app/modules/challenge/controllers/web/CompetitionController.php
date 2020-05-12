@@ -10,6 +10,7 @@ use Dengarin\Main\Models\User;
 class CompetitionController extends ModuleController
 {
     const MARK = "_DENGAR-IN_";
+    const SUBMISSION_PATH = "/public/challenge_submission/";
 
     public function indexAction()
     {
@@ -60,16 +61,25 @@ class CompetitionController extends ModuleController
         // get id user from auth session
         $userid = $this->auth()->id;
 
+        /*
+        * Read any submission from user
+        */
+        $submission = Submission::findFirst([
+            'conditions' => 'id = :id: and idcomp = :idcomp:',
+            'bind' => [
+                'id' => $userid,
+                'idcomp' => $id,
+            ]
+        ]);
+        $actual_file = explode(self::MARK, $submission->files);
+        $actual_file = $actual_file[1];
         $this->view->setVars([
             'title' => $title,
             'expired' => $sign,
             'readable_date' => $d,
-            'iduser' => $userid
+            'iduser' => $userid,
+            'files' => $actual_file
         ]);
-        /*
-        * Read any submission from user
-        */
-        
 
         if ($this->request->isPost())
         {
@@ -88,7 +98,7 @@ class CompetitionController extends ModuleController
                         $image = $user->username . self::MARK . $file->getName();
                         $dir = $competition->title . self::MARK . $competition->duedate . "/";
                         $file->moveTo(
-                            BASE_PATH . "/public/challenge_submission/" . $dir . $image
+                            BASE_PATH . self::SUBMISSION_PATH . $dir . $image
                         );
                         $filepath = $image;
                     }                    
@@ -106,10 +116,56 @@ class CompetitionController extends ModuleController
                     $this->flashSession->error('Failed to upload your submission');
                     $this->response->redirect("/competition/" . $id);
                 }
-            }elseif ($this->request->getPost("edit")) {
-                
-            }elseif ($this->request->getPost("delete")) {
-
+            }elseif ($this->request->getPost("edit") && $this->security->checkToken()) {
+                /*
+                * Editing new submission
+                */                
+                if ($this->request->hasFiles())
+                {
+                    $user = User::findFirst($userid);
+                    $directory = '';
+                    $filepath = '';
+                    $files = $this->request->getUploadedFiles();
+                    foreach ($files as $file) {
+                        // regex of this title need to be verified for pathfile later
+                        $image = $user->username . self::MARK . $file->getName();
+                        $dir = $competition->title . self::MARK . $competition->duedate . "/";
+                        $file->moveTo(
+                            BASE_PATH . self::SUBMISSION_PATH . $dir . $image
+                        );
+                        $directory = $dir;
+                        $filepath = $image;
+                    }                    
+                    // delete the old submission
+                    if (!unlink(BASE_PATH . self::SUBMISSION_PATH . $directory . $submission->files)) {
+                        $this->flashSession->error('Failed to delete the old submission file');
+                        $this->response->redirect("/competition/" . $id);
+                    }
+                    $submission->files = $filepath;
+                    if ($submission->update()) {
+                        $this->flashSession->success('Submission has been edited succesfully');
+                        $this->response->redirect("/competition/" . $id);
+                    }else{
+                        foreach ($submission->getMessages() as $message)
+                            $this->flash->error($message->getMessage());
+                    }
+                }else{
+                    $this->flashSession->error('Failed to upload your new submission');
+                    $this->response->redirect("/competition/" . $id);
+                }                
+            }elseif ($this->request->getPost("delete") && $this->security->checkToken()) {
+                /*
+                * Deleting submission
+                */
+                $directory = $competition->title . self::MARK . $competition->duedate . "/";
+                if (unlink(BASE_PATH . self::SUBMISSION_PATH . $directory . $submission->files) && $submission->delete())
+                {
+                    $this->flashSession->success('Submission has been deleted succesfully');
+                    $this->response->redirect("/competition/" . $id);
+                } else {
+                    foreach ($competition->getMessages() as $message)
+                        $this->flash->error($message->getMessage());
+                }
             }
         }
     }

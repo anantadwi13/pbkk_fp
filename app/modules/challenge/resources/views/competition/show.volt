@@ -44,7 +44,7 @@
                         <div class="row justify-content-center py-30">
                             <div class="col-lg-8">
                                 <h3 class="font-w700 mb-50">Your Submission</h3>
-                                    {% if true %}
+                                    {% if !files %}
                                     <div class="media mb-30 btn-group">
                                     <!-- If it doesn't have any submission, then create one -->
                                         <button type="button" data-toggle="modal" data-target="#modal-create" class="btn btn-rounded btn-noborder btn-outline-success min-width-125" title="Create">
@@ -97,13 +97,13 @@
                                     <!-- otherwise show, edit or delete -->
                                     <div class="media mb-30 btn-group">
                                         <button type="button" disabled class="btn btn-rounded btn-noborder btn-outline-secondary min-width-300">
-                                            {{"file.zip"}}
+                                            {{files}}
                                         </button>
                                         <button type="button" class="btn btn-rounded btn-noborder btn-outline-info min-width-125" data-toggle="modal" data-target="#modal-edit" title="Edit">
                                             <i class="fa fa-pencil mr-5"></i>Ganti
                                         </button>
                                         <button type="button" class="btn btn-rounded btn-noborder btn-outline-danger min-width-125" data-toggle="modal" data-target="#modal-delete" title="Delete">
-                                            <i class="fa fa-times mr-5"></i>Hapus
+                                            <i class="fa fa-times mr-5"></i>Batalkan
                                         </button>                                    
                                     </div>
                                     <!-- Edit Modal -->
@@ -137,8 +137,6 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Batal</button>
                                                     <input type="hidden" name="{{ security.getTokenKey() }}" value="{{ security.getToken() }}">
-                                                    <input type="hidden" name="idcomp" value="{{ competition.idcomp }}">
-                                                    <input type="hidden" name="id" value="{{ iduser }}">
                                                     <button type="submit" id="edit" name="edit" value="edit" class="btn btn-alt-success">
                                                         <i class="fa fa-check"></i> Simpan Perubahan
                                                     </button>
@@ -169,8 +167,6 @@
                                                     <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Tidak</button>
                                                     <form method="post">
                                                     <input type="hidden" name="{{ security.getTokenKey() }}" value="{{ security.getToken() }}">
-                                                    <input type="hidden" name="id" value="{{ competition.idcomp }}">
-                                                    <input type="hidden" name="id" value="{{ iduser }}">
                                                     <button type="submit" id="delete" name="delete" value="delete" class="btn btn-alt-danger">
                                                         <i class="fa fa-check"></i> Iya
                                                     </button>
