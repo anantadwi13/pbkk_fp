@@ -38,7 +38,7 @@ $router->add('/competition/:int',array(
     'controller' => 'competition',
     'action' => 'show',
     'id' => 1,
-))->setName('per_competition');
+));
 
 
 // admin
@@ -55,4 +55,4 @@ $router->add('/manage_competition/:int',array(
     'controller' => 'management',
     'action' => 'show',
     'id' => 1,
-))->setName('challenge-manage-submission');
+));

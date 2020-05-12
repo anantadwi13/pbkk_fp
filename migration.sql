@@ -116,7 +116,7 @@ go
 
 create table submission
 (
-    idsubm       bigint not null
+    idsubm       bigint identity
         constraint submission_pk
             primary key nonclustered,
     files varchar(700)       not null,

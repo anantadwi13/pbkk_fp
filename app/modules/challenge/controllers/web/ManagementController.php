@@ -9,6 +9,8 @@ use Phalcon\Dispatcher;
 
 class ManagementController extends ModuleController
 {
+    const MARK = "_DENGAR-IN_";
+    
     public function rrmdir($dir): bool
     { 
         if (is_dir($dir)) { 
@@ -65,7 +67,7 @@ class ManagementController extends ModuleController
                     $files = $this->request->getUploadedFiles();
                     foreach ($files as $file) {
                         // regex of this title need to be verified for pathfile later
-                        $image = $this->request->getPost("title") . "_DENGAR-IN_" . $file->getName();
+                        $image = $this->request->getPost("title") . self::MARK . $file->getName();
                         $file->moveTo(
                             BASE_PATH . "/public/challenge_competition/" . $image
                         );
@@ -81,7 +83,7 @@ class ManagementController extends ModuleController
                     $competition->image = $filepath;
 
                     // make submission directory
-                    $submission_folder = $competition->title . "_DENGAR-IN_" . $competition->duedate;
+                    $submission_folder = $competition->title . self::MARK . $competition->duedate;
                     if (!mkdir(BASE_PATH . "/public/challenge_submission/" . $submission_folder)) {
                         $this->flashSession->error('Failed to create submission directory');
                         $this->response->redirect(['for' => 'challenge-manage-competition']);
@@ -117,7 +119,7 @@ class ManagementController extends ModuleController
                         $files = $this->request->getUploadedFiles();
                         foreach ($files as $file) {
                             // regex of this title need to be verified for pathfile later
-                            $image = $this->request->getPost("title") . "_DENGAR-IN_" . $file->getName();
+                            $image = $this->request->getPost("title") . self::MARK . $file->getName();
                             $file->moveTo(
                                 BASE_PATH . "/public/challenge_competition/" . $image
                             );
@@ -142,16 +144,14 @@ class ManagementController extends ModuleController
                         // $competition->duedate = $date;
                     }
                     // rename submission directory and title and image poster
-                    $old_submission_folder = $competition->title . "_DENGAR-IN_" . $competition->duedate;
+                    $old_submission_folder = $competition->title . self::MARK . $competition->duedate;
                     $old_title_image = $competition->image;
                     $competition->assign($this->request->getPost(),['title', 'description', 'duedate']);
-                    $new_submission_folder = $competition->title . "_DENGAR-IN_" . $competition->duedate;
+                    $new_submission_folder = $competition->title . self::MARK . $competition->duedate;
                     // keep the image filename still
                     $old_image = explode('_DENGAR-IN_', $competition->image);
-                    $new_title_image = $competition->title . "_DENGAR-IN_" . $old_image[1];
-                    // var_dump($old_title_image);
-                    // var_dump($new_title_image);
-                    // exit();
+                    $new_title_image = $competition->title . self::MARK . $old_image[1];
+                    
                     // rename submission dir
                     if (!rename(BASE_PATH . "/public/challenge_submission/" . $old_submission_folder,
                         BASE_PATH . "/public/challenge_submission/" . $new_submission_folder))
@@ -159,7 +159,7 @@ class ManagementController extends ModuleController
                         $this->flashSession->error('Failed to migrate the entire submission directory');
                         $this->response->redirect(['for' => 'challenge-manage-competition']);
                     }
-                    // rename image filename
+                    // rename image filename based on the title
                     if ($old_title_image != $new_title_image) {
                         if (!rename(BASE_PATH . "/public/challenge_competition/" . $old_title_image,
                             BASE_PATH . "/public/challenge_competition/" . $new_title_image))
@@ -184,7 +184,7 @@ class ManagementController extends ModuleController
                 */
                 $competition = Competition::findFirst($this->request->getPost('id'));
                 // delete submission directory
-                $submission_folder = $competition->title . "_DENGAR-IN_" . $competition->duedate;
+                $submission_folder = $competition->title . self::MARK . $competition->duedate;
                 if (!$this->rrmdir(BASE_PATH . "/public/challenge_submission/" . $submission_folder)) {
                     $this->flashSession->error('Failed to delete entire submission directory');
                     $this->response->redirect(['for' => 'challenge-manage-competition']);

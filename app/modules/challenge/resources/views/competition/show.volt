@@ -6,6 +6,9 @@
                     <div class="bg-black-op-75">
                         <div class="content content-top text-center">
                             <div class="py-100">
+                                <div class="px-30">
+                                    {{ flashSession.output() }}
+                                </div>
                                 <h1 class="font-w700 text-white mb-10">{{competition.title}}</h1>
                                 <h2 class="h4 font-w400 text-white-op">{{readable_date}}</h2>
                             </div>

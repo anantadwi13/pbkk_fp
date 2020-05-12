@@ -162,7 +162,7 @@
                                                     <!-- Populating custom file input label with the selected filename (data-toggle="custom-file-input" is initialized in Helpers.coreBootstrapCustomFileInput()) -->
                                                     <input type="file" class="custom-file-input" id="image" name="image" data-toggle="custom-file-input">
                                                     <label class="custom-file-label" for="image">Gambarmu.jpg</label>
-                                                    <div class="form-text text-muted">Poster landscape yang mewakili challenge di dengar.in</div>
+                                                    <div class="form-text text-muted">Poster landscape yang mewakili challenge di dengar.in maks 2MB</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -266,7 +266,7 @@
                                                     <!-- Populating custom file input label with the selected filename (data-toggle="custom-file-input" is initialized in Helpers.coreBootstrapCustomFileInput()) -->
                                                     <input type="file" class="custom-file-input" id="image" name="image" data-toggle="custom-file-input">
                                                     <label class="custom-file-label" for="image">Pilih gambar poster landscape 4:3</label>
-                                                    <div class="form-text text-muted">Poster landscape yang mewakili challenge di dengar.in</div>
+                                                    <div class="form-text text-muted">Poster landscape yang mewakili challenge di dengar.in maks 2MB</div>
                                                 </div>
                                             </div>
                                         </div>
