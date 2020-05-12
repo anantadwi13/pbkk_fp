@@ -141,15 +141,33 @@ class ManagementController extends ModuleController
                         // $date = join("-",$date);
                         // $competition->duedate = $date;
                     }
-                    // rename submission directory
+                    // rename submission directory and title and image poster
                     $old_submission_folder = $competition->title . "_DENGAR-IN_" . $competition->duedate;
+                    $old_title_image = $competition->image;
                     $competition->assign($this->request->getPost(),['title', 'description', 'duedate']);
                     $new_submission_folder = $competition->title . "_DENGAR-IN_" . $competition->duedate;
+                    // keep the image filename still
+                    $old_image = explode('_DENGAR-IN_', $competition->image);
+                    $new_title_image = $competition->title . "_DENGAR-IN_" . $old_image[1];
+                    // var_dump($old_title_image);
+                    // var_dump($new_title_image);
+                    // exit();
+                    // rename submission dir
                     if (!rename(BASE_PATH . "/public/challenge_submission/" . $old_submission_folder,
                         BASE_PATH . "/public/challenge_submission/" . $new_submission_folder))
                     {
                         $this->flashSession->error('Failed to migrate the entire submission directory');
                         $this->response->redirect(['for' => 'challenge-manage-competition']);
+                    }
+                    // rename image filename
+                    if ($old_title_image != $new_title_image) {
+                        if (!rename(BASE_PATH . "/public/challenge_competition/" . $old_title_image,
+                            BASE_PATH . "/public/challenge_competition/" . $new_title_image))
+                        {
+                            $this->flashSession->error('Failed to migrate the image poster');
+                            $this->response->redirect(['for' => 'challenge-manage-competition']);
+                        }
+                        $competition->image = $new_title_image;
                     }
 
                     if ($competition->update()){

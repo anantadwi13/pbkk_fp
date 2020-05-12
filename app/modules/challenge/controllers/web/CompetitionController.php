@@ -66,5 +66,25 @@ class CompetitionController extends ModuleController
         /*
         * Read any submission from user
         */
+        if ($this->request->isPost())
+        {
+            if ($this->request->getPost("create"))
+            {
+                /*
+                * Creating new submission
+                */                
+                if ($this->request->hasFiles())
+                {
+
+                }else{
+                    $this->flashSession->error('Failed to upload your submission');
+                    $this->response->redirect(['for' => 'per_competition']);
+                }
+            }elseif ($this->request->getPost("edit")) {
+                
+            }elseif ($this->request->getPost("delete")) {
+
+            }
+        }
     }
 }
