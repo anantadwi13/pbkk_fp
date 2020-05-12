@@ -48,6 +48,11 @@
                                         </td>
                                         <td class="text-center">
                                             <div class="btn-group">
+                                                <a href="{{url("/manage_competition/submission/")}}{{c.idcomp}}">
+                                                    <button type="button" class="btn btn-sm btn-secondary" title="Submissions">
+                                                        <i class="fa fa-folder-open"></i>
+                                                    </button>
+                                                </a>
                                                 <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-look-{{ loop.index }}" title="Look">
                                                     <i class="fa fa-search"></i>
                                                 </button>

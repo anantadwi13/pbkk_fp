@@ -49,7 +49,7 @@ $router->add('/manage_competition',array(
     'action' => 'index',
 ))->setName('challenge-manage-competition');
 
-$router->add('/manage_competition/:int',array(
+$router->add('/manage_competition/submission/:int',array(
     'namespace' => $webNamespace,
     'module' => $moduleName,
     'controller' => 'management',

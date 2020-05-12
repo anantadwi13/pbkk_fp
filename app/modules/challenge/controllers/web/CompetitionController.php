@@ -56,7 +56,7 @@ class CompetitionController extends ModuleController
         // get readable date
         $dues = getdate($duedate);
         $d = "$dues[weekday], $dues[month] $dues[mday] $dues[year]";
-        $title = $competition->title . ' - Competition Management';
+        $title = $competition->title . ' - Competition';
 
         // get id user from auth session
         $userid = $this->auth()->id;

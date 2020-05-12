@@ -13,7 +13,7 @@
                                     Get Inspired and Perform.
                                 </p>
                                 <p class="font-italic text-white-op">
-                                    Copyright &copy; <span class="js-year-copy">2017</span>
+                                    Copyright &copy; <span class="js-year-copy">2017</span>20
                                 </p>
                             </div>
                         </div>

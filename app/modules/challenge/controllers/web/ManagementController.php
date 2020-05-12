@@ -208,11 +208,51 @@ class ManagementController extends ModuleController
 
     public function showAction()
     {
-        $id = $this->dispatcher->getParam('id');
-        $title = $id . ' - Competition Management';
+        /*
+        * Read particular competition
+        */
+        $idcomp = $this->dispatcher->getParam('id');
+        $competition = Competition::findFirst($idcomp);
+        $title = $competition->title . ' - Submission Management';
+        
+        /*
+        * Read all the submission
+        */
+        $this->view->submission = Submission::findByIdcomp($idcomp);
+        $tricky_username = [];
+        foreach ($this->view->submission as $s) {
+            $username = explode(self::MARK, $s->files);
+            $tricky_username[] = $username[0];
+        }
         $this->view->setVars([
             'title' => $title,
-            'id' => $id
+            'competition_name' => $competition->title,
+            'username' => $tricky_username
         ]);
+
+        if ($this->request->isPost())
+        {
+            if ($this->request->getPost("delete") && $this->security->checkToken()) {
+                /*
+                * Deleting submission
+                */
+                $submission = Submission::findFirst([
+                    'conditions' => 'id = :id: and idcomp = :idcomp:',
+                    'bind' => [
+                        'id' => $this->request->getPost("id"),
+                        'idcomp' => $idcomp,
+                    ]
+                ]);
+                $directory = $competition->title . self::MARK . $competition->duedate . "/";
+                if (unlink(BASE_PATH . self::SUBMISSION_PATH . $directory . $submission->files) && $submission->delete())
+                {
+                    $this->flashSession->success('Submission has been deleted succesfully');
+                    $this->response->redirect("/manage_competition/submission/" . $idcomp);
+                } else {
+                    foreach ($competition->getMessages() as $message)
+                        $this->flash->error($message->getMessage());
+                }
+            }
+        }
     }
 }
