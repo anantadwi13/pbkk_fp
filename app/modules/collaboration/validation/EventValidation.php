@@ -15,15 +15,17 @@ use Phalcon\Validation;
 class EventValidation extends Validation
 {
     private int $type;
+    private $sound_user_id;
     const TYPE_AMPLIFIER_CREATE = 1;
     const TYPE_SOUND_CREATE = 2;
     const TYPE_AMPLIFIER_UPDATE = 3;
     const TYPE_SOUND_UPDATE = 4;
     const TYPE_SOUND_ACCEPT = 5;
 
-    public function __construct(int $type, array $validators = array())
+    public function __construct(int $type, $sound_user_id = null, array $validators = array())
     {
         $this->type = $type;
+        $this->sound_user_id = $sound_user_id;
         parent::__construct($validators);
     }
 
@@ -98,6 +100,10 @@ class EventValidation extends Validation
                                         or (?2 <= time_end and ?3 >= time_end) 
                                         or (?4 >= time_start and ?5 <= time_end)) and status & ?6 = ?7 
                                         and status & ?8 = ?9';
+                    if ($this->sound_user_id != null) {
+                        $conditions .= ' and sound_user_id = :sound_user_id:';
+                        $bind['sound_user_id'] = $this->sound_user_id;
+                    }
                 } else{
                     /** @var Event $event */
                     $event = Event::findFirst($data['id']);

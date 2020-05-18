@@ -82,7 +82,7 @@ class EventController extends ModuleController
             /**
              * Validation
              */
-            $validator = new EventValidation(EventValidation::TYPE_SOUND_CREATE);
+            $validator = new EventValidation(EventValidation::TYPE_SOUND_CREATE, $this->auth->id);
             $errors = $validator->validate($this->request->getPost());
 
             if ($errors->count()) {
@@ -129,7 +129,7 @@ class EventController extends ModuleController
             /**
              * Validation
              */
-            $validator = new EventValidation(EventValidation::TYPE_AMPLIFIER_CREATE);
+            $validator = new EventValidation(EventValidation::TYPE_AMPLIFIER_CREATE, $user->id);
             $errors = $validator->validate($this->request->getPost());
 
             if ($errors->count()) {
