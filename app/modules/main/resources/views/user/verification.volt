@@ -54,9 +54,9 @@
                                                         <input type="hidden" name="{{ security.getTokenKey() }}" value="{{ security.getToken() }}">
                                                         <input type="hidden" name="id" value="{{ user.id }}">
                                                         <div class="btn-group">
-                                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Send Again">
-                                                                <i class="fa fa-envelope"></i>
-                                                            </button>
+{#                                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Send Again">#}
+{#                                                                <i class="fa fa-envelope"></i>#}
+{#                                                            </button>#}
                                                             <button type="submit" class="btn btn-sm btn-secondary" data-toggle="tooltip" name="verify" value="1" title="Verify">
                                                                 <i class="fa fa-check"></i>
                                                             </button>
