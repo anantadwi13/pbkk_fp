@@ -37,3 +37,15 @@ Final Project PBKK
 | 14. | User Amplifier dapat membuat jadwal collab dengan user Sound | <ul><li>[x] </li></ul>
 | 15. | User Sound dapat menanggapi (menerima/menolak) jadwal collab dari user Amplifier | <ul><li>[x] </li></ul>
 | 16. | User (Sound dan Amplifier) dapat memberikan rating ke user (Sound dan Amplifier) lain setelah melakukan collab | <ul><li>[x] </li></ul>
+### Rangga K D
+| No | Deskripsi | Check
+| --- | --- | ---
+| 9. | User Admin dapat membuat kompetisi dengan kerjasama dengan pihak ketiga | <ul><li>[x] </li></ul>
+| 10. | User Admin dapat mengedit kompetisi dengan kerjasama dengan pihak ketiga | <ul><li>[x] </li></ul>
+| 11. | User Admin dapat menghapus kompetisi | <ul><li>[x] </li></ul>
+| 12. | User Admin dapat melihat submisi - submisi user Sound | <ul><li>[x] </li></ul>
+| 13. | User Sound dapat melihat kompetisi yang tersedia | <ul><li>[x] </li></ul>
+| 14. | User Sound dapat mengirim submisi karya ke kompetisi | <ul><li>[x] </li></ul>
+| 15. | User Sound dapat mengganti submisi karya ke kompetisi | <ul><li>[x] </li></ul>
+| 16. | User Sound dapat membatalkan submisi karya ke kompetisi | <ul><li>[x] </li></ul>
+| 17. | User Admin dapat membatalkan submisi karya terindikasi plagiarisme | <ul><li>[x] </li></ul>
