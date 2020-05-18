@@ -1,6 +1,10 @@
 # dengar.in
 
 Final Project PBKK
+- Ananta Dwi Prasetya Purna Yuda (05111740000029)
+- Rangga Kusuma Dinata (05111740000120)
+
+Dokumen dapat diakses pada link [berikut](https://drive.google.com/open?id=11_iBtilxZVfGXaKVnP7TtUzZLTIn_p7M)
 
 ## Installation
 
@@ -25,7 +29,7 @@ Final Project PBKK
 | 5. | User (Admin, Sound, Amplifier) dapat mencari user (Sound dan Amplifier) lain | <ul><li>[x] </li></ul>
 | 6. | User (Admin, Sound, Amplifier) dapat melihat portofolio (profil) user (Sound dan Amplifier) lain | <ul><li>[x] </li></ul>
 | 7. | User (Sound dan Amplifier) dapat menambahkan user (Sound dan Amplifier) lain | <ul><li>[x] </li></ul>
-| 8. | User Admin dapat memblokir user (Sound dan Amplifier) | <ul><li>[ ] </li></ul>
+| 8. | User Admin dapat memblokir user (Sound dan Amplifier) | <ul><li>[x] </li></ul>
 ### Ananta Dwi P P Y
 | No | Deskripsi | Check
 | --- | --- | ---
