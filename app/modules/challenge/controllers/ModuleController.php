@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Dengarin\Main\Controllers;
+namespace Dengarin\Challenge\Controllers;
 
 use App\Common\Controllers\BaseModuleController;
 use App\Utils\Sidebar\Item\Anchor;

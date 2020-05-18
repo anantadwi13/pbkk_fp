@@ -29,4 +29,18 @@ return [
             'defaultAction' => 'index',
         ],
     ],
+    'challenge' => [
+        'className' => 'Dengarin\Challenge\Module',
+        'path' => APP_PATH . '/modules/challenge/Module.php',
+        'namespace' => [
+            'base' => 'Dengarin\Challenge',
+            'webController' => 'Dengarin\Challenge\Controllers\Web',
+            'apiController' => 'Dengarin\Challenge\Controllers\Api'
+        ],
+        'routing' => [
+            'useDefault' => true,
+            'defaultController' => 'index',
+            'defaultAction' => 'index',
+        ],
+    ],
 ];
