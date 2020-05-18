@@ -9,6 +9,9 @@ class MediaController extends ModuleController
 {
     public function portfolioAction($username)
     {
+        $this->view->setLayoutsDir(__DIR__ . '/../../resources/layouts/');
+        $this->view->setLayout('calendar');
+
         /** @var User $user */
         $user = User::findFirstByUsername($username);
 

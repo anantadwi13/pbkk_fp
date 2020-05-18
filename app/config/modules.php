@@ -15,4 +15,32 @@ return [
             'defaultAction' => 'index',
         ],
     ],
+    'collaboration' => [
+        'className' => 'Dengarin\Collaboration\Module',
+        'path' => APP_PATH . '/modules/collaboration/Module.php',
+        'namespace' => [
+            'base' => 'Dengarin\Collaboration',
+            'webController' => 'Dengarin\Collaboration\Controllers\Web',
+            'apiController' => 'Dengarin\Collaboration\Controllers\Api'
+        ],
+        'routing' => [
+            'useDefault' => false,
+            'defaultController' => 'index',
+            'defaultAction' => 'index',
+        ],
+    ],
+    'challenge' => [
+        'className' => 'Dengarin\Challenge\Module',
+        'path' => APP_PATH . '/modules/challenge/Module.php',
+        'namespace' => [
+            'base' => 'Dengarin\Challenge',
+            'webController' => 'Dengarin\Challenge\Controllers\Web',
+            'apiController' => 'Dengarin\Challenge\Controllers\Api'
+        ],
+        'routing' => [
+            'useDefault' => true,
+            'defaultController' => 'index',
+            'defaultAction' => 'index',
+        ],
+    ],
 ];

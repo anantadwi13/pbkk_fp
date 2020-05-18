@@ -30,6 +30,8 @@ create table events
     time_start        datetime      not null,
     time_end          datetime      not null,
     location          text,
+    rating_sound      smallint,
+    rating_amplifier  smallint,
     status            int default 0 not null,
     created_at        datetime,
     updated_at        datetime
@@ -101,3 +103,29 @@ create index users_status_index
 go
 
 
+-- challenge
+create table competition
+(
+    idcomp       bigint identity
+        constraint competition_pk
+            primary key nonclustered,
+    title varchar(200)       not null,
+    description TEXT       not null,
+    duedate     date       not null,
+    image   VARCHAR(500)	not null
+)
+go
+
+create table submission
+(
+    idsubm       bigint identity
+        constraint submission_pk
+            primary key nonclustered,
+    files varchar(700)       not null,
+    idcomp     BIGINT       not null
+    	constraint submission_users_idcomp_fk REFERENCES competition
+        on UPDATE CASCADE on DELETE CASCADE,
+    id   BIGINT	not null
+    	constraint submission_users_id_fk REFERENCES users
+        on UPDATE CASCADE on DELETE CASCADE
+)

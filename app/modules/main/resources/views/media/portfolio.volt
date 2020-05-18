@@ -39,13 +39,13 @@
                                 {% endif %}
                             {% endif %}
 
-                            {% if auth is defined and auth.role == constant('Dengarin\Main\Models\User::ROLE_AMPLIFIER') and
+                            {#{% if auth is defined and auth.role == constant('Dengarin\Main\Models\User::ROLE_AMPLIFIER') and
                                 user.role == constant('Dengarin\Main\Models\User::ROLE_SOUND') %}
                                 <a href="{{ url({'for': 'collaboration-event-collab', 'username': user.username}) }}"
                                    class="btn btn-rounded btn-hero btn-sm btn-alt-info mb-5 ml-5">
                                     <i class="fa fa-group mr-5"></i> Collaborate!
                                 </a>
-                            {% endif %}
+                            {% endif %}#}
 
                             {% if auth is not defined %}
                                 <a href="{{ url({'for': 'signin'}) }}" class="btn btn-rounded btn-hero btn-sm btn-alt-success mb-5">
@@ -70,117 +70,71 @@
 
                     <!-- Simple Gallery (.js-gallery class is initialized in Helpers.magnific()) -->
                     <!-- For more info and examples you can check out http://dimsemenov.com/plugins/magnific-popup/ -->
-                    <h2 class="content-heading">Gallery</h2>
+                    <h2 class="content-heading">Events</h2>
                     <div class="row items-push js-gallery img-fluid-100">
-                        <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-                            <a class="img-link img-link-zoom-in img-thumb img-lightbox" target="_blank" href="{{ url('/') }}assets/media/photos/photo17@2x.jpg">
-                                <img class="img-fluid" src="{{ url('/') }}assets/media/photos/photo17.jpg" alt="">
-                            </a>
+                        <!-- Calendar and Events functionality is initialized in js/pages/be_comp_calendar.min.js which was auto compiled from _es6/pages/be_comp_calendar.js -->
+                        <!-- For more info and examples you can check out https://fullcalendar.io/ -->
+                        <div class="block">
+                            <div class="block-content">
+                                <div class="row items-push">
+                                    <div class="col-xl-8 offset-xl-2">
+                                        <!-- Calendar Container -->
+                                        <div class="js-calendar"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-                            <a class="img-link img-link-zoom-in img-thumb img-lightbox" target="_blank" href="{{ url('/') }}assets/media/photos/photo18@2x.jpg">
-                                <img class="img-fluid" src="{{ url('/') }}assets/media/photos/photo18.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-                            <a class="img-link img-link-zoom-in img-thumb img-lightbox" target="_blank" href="{{ url('/') }}assets/media/photos/photo19@2x.jpg">
-                                <img class="img-fluid" src="{{ url('/') }}assets/media/photos/photo19.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-                            <a class="img-link img-link-zoom-in img-thumb img-lightbox" target="_blank" href="{{ url('/') }}assets/media/photos/photo20@2x.jpg">
-                                <img class="img-fluid" src="{{ url('/') }}assets/media/photos/photo20.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-                            <a class="img-link img-link-zoom-in img-thumb img-lightbox" target="_blank" href="{{ url('/') }}assets/media/photos/photo21@2x.jpg">
-                                <img class="img-fluid" src="{{ url('/') }}assets/media/photos/photo21.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-                            <a class="img-link img-link-zoom-in img-thumb img-lightbox" target="_blank" href="{{ url('/') }}assets/media/photos/photo22@2x.jpg">
-                                <img class="img-fluid" src="{{ url('/') }}assets/media/photos/photo22.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-                            <a class="img-link img-link-zoom-in img-thumb img-lightbox" target="_blank" href="{{ url('/') }}assets/media/photos/photo23@2x.jpg">
-                                <img class="img-fluid" src="{{ url('/') }}assets/media/photos/photo23.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-                            <a class="img-link img-link-zoom-in img-thumb img-lightbox" target="_blank" href="{{ url('/') }}assets/media/photos/photo24@2x.jpg">
-                                <img class="img-fluid" src="{{ url('/') }}assets/media/photos/photo24.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-                            <a class="img-link img-link-zoom-in img-thumb img-lightbox" target="_blank" href="{{ url('/') }}assets/media/photos/photo25@2x.jpg">
-                                <img class="img-fluid" src="{{ url('/') }}assets/media/photos/photo25.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-                            <a class="img-link img-link-zoom-in img-thumb img-lightbox" target="_blank" href="{{ url('/') }}assets/media/photos/photo26@2x.jpg">
-                                <img class="img-fluid" src="{{ url('/') }}assets/media/photos/photo26.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-                            <a class="img-link img-link-zoom-in img-thumb img-lightbox" target="_blank" href="{{ url('/') }}assets/media/photos/photo27@2x.jpg">
-                                <img class="img-fluid" src="{{ url('/') }}assets/media/photos/photo27.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-                            <a class="img-link img-link-zoom-in img-thumb img-lightbox" target="_blank" href="{{ url('/') }}assets/media/photos/photo28@2x.jpg">
-                                <img class="img-fluid" src="{{ url('/') }}assets/media/photos/photo28.jpg" alt="">
-                            </a>
-                        </div>
+                        <!-- END Calendar -->
+
                     </div>
                     <!-- END Simple Gallery -->
 
-                    <!-- Music -->
-                    <h2 class="content-heading">
-                        <!--<button type="button" class="btn btn-sm btn-rounded btn-alt-secondary float-right">View More..</button>-->
-                        <i class="si si-note mr-5"></i> Music
-                    </h2>
-                    <a class="block block-rounded block-link-shadow" href="javascript:void(0)">
-                        <div class="block-content block-content-full">
-                            <p class="font-size-sm text-muted float-sm-right mb-5"><em>3:30</em></p>
-                            <h4 class="font-size-default text-primary mb-0">
-                                <i class="fa fa-music text-muted mr-5"></i> 5 things
-                            </h4>
-                        </div>
-                    </a>
-                    <a class="block block-rounded block-link-shadow" href="javascript:void(0)">
-                        <div class="block-content block-content-full">
-                            <p class="font-size-sm text-muted float-sm-right mb-5"><em>2:42</em></p>
-                            <h4 class="font-size-default text-primary mb-0">
-                                <i class="fa fa-music text-muted mr-5"></i> Soul Sand
-                            </h4>
-                        </div>
-                    </a>
-                    <a class="block block-rounded block-link-shadow" href="javascript:void(0)">
-                        <div class="block-content block-content-full">
-                            <p class="font-size-sm text-muted float-sm-right mb-5"><em>2:42</em></p>
-                            <h4 class="font-size-default text-primary mb-0">
-                                <i class="fa fa-music text-muted mr-5"></i> 10 Important things I wish I knew
-                            </h4>
-                        </div>
-                    </a>
-                    <a class="block block-rounded block-link-shadow" href="javascript:void(0)">
-                        <div class="block-content block-content-full">
-                            <p class="font-size-sm text-muted float-sm-right mb-5"><em>2:42</em></p>
-                            <h4 class="font-size-default text-primary mb-0">
-                                <i class="fa fa-music text-muted mr-5"></i> Bringing your productivity back
-                            </h4>
-                        </div>
-                    </a>
-                    <a class="block block-rounded block-link-shadow" href="javascript:void(0)">
-                        <div class="block-content block-content-full">
-                            <p class="font-size-sm text-muted float-sm-right mb-5"><em>2:42</em></p>
-                            <h4 class="font-size-default text-primary mb-0">
-                                <i class="fa fa-music text-muted mr-5"></i> Super Smooth
-                            </h4>
-                        </div>
-                    </a>
-                    <!-- END Articles -->
+{#                    <!-- Music -->#}
+{#                    <h2 class="content-heading">#}
+{#                        <!--<button type="button" class="btn btn-sm btn-rounded btn-alt-secondary float-right">View More..</button>-->#}
+{#                        <i class="si si-note mr-5"></i> Music#}
+{#                    </h2>#}
+{#                    <a class="block block-rounded block-link-shadow" href="javascript:void(0)">#}
+{#                        <div class="block-content block-content-full">#}
+{#                            <p class="font-size-sm text-muted float-sm-right mb-5"><em>3:30</em></p>#}
+{#                            <h4 class="font-size-default text-primary mb-0">#}
+{#                                <i class="fa fa-music text-muted mr-5"></i> 5 things#}
+{#                            </h4>#}
+{#                        </div>#}
+{#                    </a>#}
+{#                    <a class="block block-rounded block-link-shadow" href="javascript:void(0)">#}
+{#                        <div class="block-content block-content-full">#}
+{#                            <p class="font-size-sm text-muted float-sm-right mb-5"><em>2:42</em></p>#}
+{#                            <h4 class="font-size-default text-primary mb-0">#}
+{#                                <i class="fa fa-music text-muted mr-5"></i> Soul Sand#}
+{#                            </h4>#}
+{#                        </div>#}
+{#                    </a>#}
+{#                    <a class="block block-rounded block-link-shadow" href="javascript:void(0)">#}
+{#                        <div class="block-content block-content-full">#}
+{#                            <p class="font-size-sm text-muted float-sm-right mb-5"><em>2:42</em></p>#}
+{#                            <h4 class="font-size-default text-primary mb-0">#}
+{#                                <i class="fa fa-music text-muted mr-5"></i> 10 Important things I wish I knew#}
+{#                            </h4>#}
+{#                        </div>#}
+{#                    </a>#}
+{#                    <a class="block block-rounded block-link-shadow" href="javascript:void(0)">#}
+{#                        <div class="block-content block-content-full">#}
+{#                            <p class="font-size-sm text-muted float-sm-right mb-5"><em>2:42</em></p>#}
+{#                            <h4 class="font-size-default text-primary mb-0">#}
+{#                                <i class="fa fa-music text-muted mr-5"></i> Bringing your productivity back#}
+{#                            </h4>#}
+{#                        </div>#}
+{#                    </a>#}
+{#                    <a class="block block-rounded block-link-shadow" href="javascript:void(0)">#}
+{#                        <div class="block-content block-content-full">#}
+{#                            <p class="font-size-sm text-muted float-sm-right mb-5"><em>2:42</em></p>#}
+{#                            <h4 class="font-size-default text-primary mb-0">#}
+{#                                <i class="fa fa-music text-muted mr-5"></i> Super Smooth#}
+{#                            </h4>#}
+{#                        </div>#}
+{#                    </a>#}
+{#                    <!-- END Articles -->#}
                 </div>
                 <!-- END Main Content -->
                 <!-- END Page Content -->
