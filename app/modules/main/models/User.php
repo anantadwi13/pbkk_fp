@@ -2,6 +2,7 @@
 
 namespace Dengarin\Main\Models;
 
+use Dengarin\Challenge\Models\Submission;
 use App\Utils\ModelTraits\StatusTrait;
 use App\Utils\ModelTraits\Timestamp;
 use Phalcon\Mvc\Model;
@@ -43,6 +44,10 @@ class User extends Model
         $this->hasOne('id', UserData::class, 'id', [
             'reusable' => true,
             'alias' => 'data'
+        ]);
+        $this->hasMany('id', Submission::class, 'id',[
+            'reusable' => true,
+            'alias' => 'submission_from_user'
         ]);
 
         $this->hasMany('id', Friend::class, 'following_user_id', [
