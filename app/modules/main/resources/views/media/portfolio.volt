@@ -39,13 +39,13 @@
                                 {% endif %}
                             {% endif %}
 
-                            {% if auth is defined and auth.role == constant('Dengarin\Main\Models\User::ROLE_AMPLIFIER') and
+                            {#{% if auth is defined and auth.role == constant('Dengarin\Main\Models\User::ROLE_AMPLIFIER') and
                                 user.role == constant('Dengarin\Main\Models\User::ROLE_SOUND') %}
                                 <a href="{{ url({'for': 'collaboration-event-collab', 'username': user.username}) }}"
                                    class="btn btn-rounded btn-hero btn-sm btn-alt-info mb-5 ml-5">
                                     <i class="fa fa-group mr-5"></i> Collaborate!
                                 </a>
-                            {% endif %}
+                            {% endif %}#}
 
                             {% if auth is not defined %}
                                 <a href="{{ url({'for': 'signin'}) }}" class="btn btn-rounded btn-hero btn-sm btn-alt-success mb-5">
